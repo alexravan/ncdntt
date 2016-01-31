@@ -16,9 +16,15 @@ User_permissions links users to any amount of permissions set in the "permission
 in class with roles, people, and people's roles, to allow users to have multiple permissions
 within the organization based on their roles at the institution. 
 
-We have a single table for ticets that requires all of the relevant information for tickets,
-and also required booleans for "isclosed" so we can easily query our DB for a list
-of open tickets, and populate our page with them.
+We have two tables for tickets that require all of the relevant information for tickets,
+one for closed and one for open tickets. These tables lin to IDs of tickets in the table
+that contains all tickets. This will allow for fast closing and reopening of tickets,
+as well as the fast population of the Timeline -- we will only have to go through 
+open tickets and not all tickets, which saves time as the app's life grows longer and
+more tickets become closed.
+
+In addition, all tickets have a field for category, which link with an ID to a table with a 
+list of categories -- such as "Fire" or "Chemical Spill." 
 
 
 ## Wireframe Design Rationale
