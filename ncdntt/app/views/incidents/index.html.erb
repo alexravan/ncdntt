@@ -46,10 +46,10 @@
     <p><span class='bold'>Severity: </span><%= incident.severity %> </p>
     <p><span class='bold'>Location: </span><%= incident.location %> </p>
     <div class='btn-group btn-group-sm'>
-      <%= button_to('Show', incident, :class => 'btn btn-default') %>
+     <!--  <%= button_to('Show', incident, :class => 'btn btn-default') %>
       <%= button_to('Edit', edit_incident_path(incident), :class => 'btn btn-default', :method => :get) %>
       <%= button_to('Mark Closed', incident, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default') %>
-
+ -->
 
       <div class="btn-group icons">
         <%= link_to('Show', incident, :class => 'btn btn-default')%>
@@ -63,6 +63,7 @@
 
   <% end %>
 <br>
-<br>
+<br><!-- 
 
 <%= link_to 'New Incident', new_incident_path %>
+ -->
