@@ -39,29 +39,46 @@
 </table>  -->
 
 <br> <br><br>
-<% @incidents.each do |incident| %>
-  <div class='col-xs-12 col-sm-8 col-md-6 col-lg-4 incident'> 
-    <p><span class='bold'>Title: </span><%= incident.title %> </p>
-    <p><span class='bold'>Description: </span><%= incident.description %> </p>
-    <p><span class='bold'>Severity: </span><%= incident.severity %> </p>
-    <p><span class='bold'>Location: </span><%= incident.location %> </p>
-    <div class='btn-group btn-group-sm'>
-     <!--  <%= button_to('Show', incident, :class => 'btn btn-default') %>
-      <%= button_to('Edit', edit_incident_path(incident), :class => 'btn btn-default', :method => :get) %>
-      <%= button_to('Mark Closed', incident, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default') %>
- -->
 
-      <div class="btn-group icons">
-        <%= link_to('Show', incident, :class => 'btn btn-default')%>
-        <%= link_to('Edit', edit_incident_path(incident), :class => 'btn btn-default', :method => :get) %>
-        <%= link_to('Mark Closed', incident, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default') %>
-        <!-- # <button class="btn reorderIcon" title="reorder steps"><%=image_tag("icons/reorder_icon.png")%></button> -->
-        <!-- <button class="btn expandIcon" title="expand"><i class="icon-fullscreen"></i></button> -->
-      </div>
-    </div>
-  </div>
+<div id="accordion" role="tablist" aria-multiselectable="true">
 
-  <% end %>
+	<% @incidents.each do |incident| %>
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingOne">
+	      <h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	        	    <p><span class='bold'>Title: </span><%= incident.title %> </p>
+	        </a>
+	      </h4>
+	    </div>
+	      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+	      	  <div class='col-xs-12 col-sm-8 col-md-6 col-lg-4 incident'> 
+		    <p><span class='bold'>Description: </span><%= incident.description %> </p>
+		    <p><span class='bold'>Severity: </span><%= incident.severity %> </p>
+		    <p><span class='bold'>Location: </span><%= incident.location %> </p>
+		    <div class='btn-group btn-group-sm'>
+		     <!--  <%= button_to('Show', incident, :class => 'btn btn-default') %>
+		      <%= button_to('Edit', edit_incident_path(incident), :class => 'btn btn-default', :method => :get) %>
+		      <%= button_to('Mark Closed', incident, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default') %>
+		 -->
+
+		      <div class="btn-group icons">
+		        <%= link_to('Show', incident, :class => 'btn btn-default')%>
+		        <%= link_to('Edit', edit_incident_path(incident), :class => 'btn btn-default', :method => :get) %>
+		        <%= link_to('Mark Closed', incident, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default') %>
+		        <!-- # <button class="btn reorderIcon" title="reorder steps"><%=image_tag("icons/reorder_icon.png")%></button> -->
+		        <!-- <button class="btn expandIcon" title="expand"><i class="icon-fullscreen"></i></button> -->
+		      </div>
+		    </div>
+		  </div>
+
+	    </div>
+	  </div>
+ 
+
+
+ 	  <% end %>
+</div>	  
 <br>
 <br><!-- 
 
