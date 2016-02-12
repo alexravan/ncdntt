@@ -11,9 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160212035449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "incidents", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "category"
+    t.string   "description"
+    t.integer  "severity"
+    t.string   "location"
+    t.boolean  "is_closed"
+    t.datetime "date_closed"
+    t.string   "closing_comment"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end
