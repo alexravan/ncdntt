@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  user_id: 1
+  category: 1
+  description: MyString
+  severity: 1
+  location: MyString
+  is_closed: false
+  date_closed: 2016-02-11 21:57:35
+  closing_comment: MyString
+
+two:
+  title: MyString
+  user_id: 1
+  category: 1
+  description: MyString
+  severity: 1
+  location: MyString
+  is_closed: false
+  date_closed: 2016-02-11 21:57:35
+  closing_comment: MyString
