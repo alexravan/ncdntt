@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @incident.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @incident.user_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @incident.category %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @incident.description %>
+</p>
+
+<p>
+  <strong>Severity:</strong>
+  <%= @incident.severity %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @incident.location %>
+</p>
+
+<p>
+  <strong>Is closed:</strong>
+  <%= @incident.is_closed %>
+</p>
+
+<p>
+  <strong>Date closed:</strong>
+  <%= @incident.date_closed %>
+</p>
+
+<p>
+  <strong>Closing comment:</strong>
+  <%= @incident.closing_comment %>
+</p>
+
+<%= link_to 'Edit', edit_incident_path(@incident) %> |
+<%= link_to 'Back', incidents_path %>
