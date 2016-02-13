@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Incidents</h1>
-
+<!-- <div class='col-xs-12 title'> -->
+<!-- <h1>Listing Incidents</h1> -->
+<!-- </div> -->
 <!-- <table>
   <thead>
     <tr>
@@ -39,20 +39,27 @@
 </table>  -->
 
 <br> <br><br>
+<% content_for :title, "Viewing Incidents" %>
 <div class='col-xs-12 col-sm-8 col-md-6 col-lg-4'>
     <div id="accordion" role="tablist" aria-multiselectable="true">
 
     	<% @incidents.each do |incident| %>
-      <% incident.id 
+      <% created =  '#' + 'collapse' + incident.id.to_s  %> 
+      <% created1 = 'collapse' + incident.id.to_s  %>
+      <% heading = 'heading' + incident.id.to_s  %>
+      <% puts created %>
+      <% puts created1 %> 
+      <% puts heading %>
+      <% puts incident.id %>
     	  <div class="panel panel-default">
     	    <div class="panel-heading" role="tab" id="headingOne">
     	      <h4 class="panel-title">
-    	        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+    	        <a data-toggle="collapse" data-parent="#accordion" href=<%=created%> aria-expanded="true" aria-controls=<%=created1%>>
     	        	    <p><span class='bold'>Title: </span><%= incident.title %> </p>
     	        </a>
     	      </h4>
     	    </div>
-          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div id=<%=created1%>  class="panel-collapse collapse" role="tabpanel" aria-labelledby=<%=heading%>>
         	  <div class='well'> 
       		    <p><span class='bold'>Description: </span><%= incident.description %> </p>
       		    <p><span class='bold'>Severity: </span><%= incident.severity %> </p>
