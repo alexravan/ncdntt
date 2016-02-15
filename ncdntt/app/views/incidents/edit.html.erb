@@ -2,5 +2,11 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @incident %> |
-<%= link_to 'Back', incidents_path %>
+
+ <div class='btn-group btn-group-sm'>
+  <div class="btn-group icons">
+
+<%= link_to('Show', @incident, :class => 'btn btn-default')%>
+<%= link_to('Back', incidents_path, :class => 'btn btn-default') %>
+</div>
+</div>
