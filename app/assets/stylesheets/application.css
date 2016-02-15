@@ -208,6 +208,7 @@ div.img-circ{
     /*vertical-align: center;*/
     padding-top: 6px;
     padding-left: 24px; 
+    position: fixed;
 }
 
 .brand {
@@ -232,11 +233,12 @@ div.img-circ{
 
 @media (max-width: 767px) {
     body {
-        padding-top: 40px;
+        padding-top: 0px;
     }
 
     .bg-bar h1 {
         font-size: 2em;
+        position:relative;
     }
 
 }
@@ -269,11 +271,27 @@ div.img-circ{
     background: rgb(30, 33, 42);
     height: 170px;
     width: 100%;
+    z-index: -1;
 }
 
-#user p {
+#userinfo {
+    font-family: 'Varela', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
     color: white;
+    position: fixed;
+    bottom: 10px;
+    left: 0px;
+    text-align: center;
+    background: red;
+    /*line-height: 30px;*/
 
+}
+        
+#userinfo > p, #userinfo > h6  {
+font-family: 'Varela', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+    
 }
 .round {
     border-radius: 50%;
