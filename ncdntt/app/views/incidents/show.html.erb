@@ -1,49 +1,55 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @incident.title %>
-</p>
+<div class = 'well'>
+  <p>
+    <strong><h1><%= @incident.title %></h1></strong>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @incident.user_id %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @incident.user_id %>
+  </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @incident.category %>
-</p>
+  <p>
+    <strong>Category:</strong>
+    <%= @incident.category %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @incident.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @incident.description %>
+  </p>
 
-<p>
-  <strong>Severity:</strong>
-  <%= @incident.severity %>
-</p>
+  <p>
+    <strong>Severity:</strong>
+    <%= @incident.severity %>
+  </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @incident.location %>
-</p>
+  <p>
+    <strong>Location:</strong>
+    <%= @incident.location %>
+  </p>
 
-<p>
-  <strong>Is closed:</strong>
-  <%= @incident.is_closed %>
-</p>
+<!--   <p>
+    <strong>Is closed:</strong>
+    <%= @incident.is_closed %>
+  </p>
+ -->
+<!--   <p>
+    <strong>Date closed:</strong>
+    <%= @incident.date_closed %>
+  </p>
+ -->
+<!--   <p>
+    <strong>Closing comment:s</strong>
+    <%= @incident.closing_comment %>
+  </p>
+ -->
+ <div class='btn-group btn-group-sm'>
+  <div class="btn-group icons">
+    <%= link_to('Edit', edit_incident_path(@incident), :class => 'btn btn-default', :method => :get) %> 
+    <%= link_to('Back', incidents_path, :class => 'btn btn-default') %>
+  </div>
+</div>
 
-<p>
-  <strong>Date closed:</strong>
-  <%= @incident.date_closed %>
-</p>
-
-<p>
-  <strong>Closing comment:</strong>
-  <%= @incident.closing_comment %>
-</p>
-
-<%= link_to 'Edit', edit_incident_path(@incident) %> |
-<%= link_to 'Back', incidents_path %>
+</div>
