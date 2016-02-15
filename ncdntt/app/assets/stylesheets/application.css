@@ -400,3 +400,7 @@ img.circle {
     /*width: 15px;*/
     height: 10px;
 }
+
+.extra-padding {
+    padding-top: 40px;
+}
