@@ -42,22 +42,20 @@
 <div class='col-xs-12 col-sm-8 col-md-6 col-lg-4'>
     <div id="accordion" role="tablist" aria-multiselectable="true">
 
-    	<% @incidents.each do |incident| %>
+    	<% @incidents.order("severity").reverse.each do |incident|  %>
       <% created =  '#' + 'collapse' + incident.id.to_s  %> 
       <% created1 = 'collapse' + incident.id.to_s  %>
       <% heading = 'heading' + incident.id.to_s  %>
-      <% puts created %>
-      <% puts created1 %> 
-      <% puts heading %>
-      <% puts incident.id %>
+      <% severityLevel = 'severityLevel' + incident.severity.to_s %>
     	  <div class="panel panel-default">
-    	    <div class="panel-heading" role="tab" id="headingOne">
-    	      <h4 class="panel-title">
-    	        <a data-toggle="collapse" data-parent="#accordion" href=<%=created%> aria-expanded="true" aria-controls=<%=created1%>>
-    	        	    <p><span class='bold'>Title: </span><%= incident.title %> </p>
-    	        </a>
-    	      </h4>
-    	    </div>
+          <div class= <%= severityLevel %>></div>
+            <div class="panel-heading" role="tab" id="headingOne">
+      	      <h4 class="panel-title">
+      	        <a data-toggle="collapse" data-parent="#accordion" href=<%=created%> aria-expanded="true" aria-controls=<%=created1%>>
+      	        	    <p><span class='bold'>Title: </span><%= incident.title %> </p>
+      	        </a>
+      	      </h4>
+            </div>
           <div id=<%=created1%>  class="panel-collapse collapse" role="tabpanel" aria-labelledby=<%=heading%>>
         	  <div class='well'> 
       		    <p><span class='bold'>Description: </span><%= incident.description %> </p>

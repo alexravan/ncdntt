@@ -342,3 +342,56 @@ img.circle {
     width: 200px;
     height: 200px;
 }
+.severityLevel10 {
+    background-color: #D91E18;
+    /*width: 15px;*/
+    height: 10px;
+}
+.severityLevel9 {
+    background-color: #D91E18;
+    /*width: 15px;*/
+    height:10px;
+}
+.severityLevel8 {
+    background-color: #F2784B;
+    /*width: 15px;*/
+    height: 10px;
+}
+.severityLevel7 {
+    background-color: #F2784B;
+    /*width: 15px;*/
+    height: 10px;
+}
+.severityLevel6 {
+    background-color: #F9BF3B;
+    /*width: 15px;*/
+    height: 10px;
+}
+.severityLevel5 {
+    background-color: #F9BF3B;
+    /*width: 15px;*/
+    height: 10px;
+}
+
+.severityLevel4 {
+    background-color: #87D37C;
+    /*width: 15px;*/
+    height: 10px;
+}
+.severityLevel3 {
+    background-color: #87D37C;
+    /*width: 15px;*/
+    height: 10px;
+}
+
+.severityLevel2 {
+    background-color: #26A65B;
+    /*width: 15px;*/
+    height: 10px;
+}
+
+.severityLevel1 {
+    background-color: #26A65B;
+    /*width: 15px;*/
+    height: 10px;
+}
