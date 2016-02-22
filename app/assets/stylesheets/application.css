@@ -138,6 +138,20 @@ html, body {
 
 }
 
+.content > .sidebar-brand {
+    font-family: 'Varela', sans-serif;
+    height: 65px;
+    font-size: 30px;
+    line-height: 60px;
+    background: rgb(160, 137, 208);
+    height: 90px;
+    color: white;
+    padding-left: 30px;
+    padding-top: 14px;
+    text-align: center;
+
+}
+
 .sidebar-nav > .sidebar-brand a {
     text-align: center;
     font-size: 2em;
@@ -199,7 +213,8 @@ div.img-circ{
     border-radius:50%;
 }
 
-.title {
+.content {
+    background-color: rgb(254, 254, 250);
     
 }
 
@@ -212,8 +227,8 @@ div.img-circ{
     /*padding: 0px;*/
     /*vertical-align: center;*/
     padding-top: 6px;
-    padding-left: 24px; 
-    position: fixed;
+    padding-left: 50px; 
+    /*position: fixed;*/
 }
 
 .brand {
@@ -249,6 +264,9 @@ div.img-circ{
         font-size: 2em;
         position:relative;
     }
+    .bg-bar {
+        padding-top: 10px;
+    }
 
 }
 
@@ -256,12 +274,13 @@ div.img-circ{
 
     .bg-bar h1 {
         font-size: 1.5em;
-        padding-top: 10px;
+        padding-top: 5px;
+        /*padding-left: -5px;*/
     }
     
 
     .bg-bar.brand {
-        min-width: 130px;
+        /*min-width: 130px;*/
     }
     .bg-bar.brand h1 {
         padding-right:20px;
@@ -271,6 +290,21 @@ div.img-circ{
         /*color:black;*/
     }
 
+
+}
+
+@media (max-width: 530px) {
+    .content > .sidebar-brand {
+        font-size: 17px;
+    }
+
+    .bg-bar {
+        padding-left:25px;
+    }
+
+    #toggle {
+        margin-right: -14px;
+    }
 }
 
 #user {
@@ -403,4 +437,10 @@ img.circle {
 
 .extra-padding {
     padding-top: 40px;
+}
+
+#toggle {
+    float: right;
+    position: absolute;
+    right: 0;
 }
