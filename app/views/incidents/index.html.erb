@@ -57,7 +57,7 @@
       </div>
 
     	<% @incidents.order("severity").reverse.each do |incident|  %>
-      <% created =  '#' + 'collapse' + incident.id.to_s  %> 
+      <% created =  '#' + 'collapse' + incident.id.to_s  %>
       <% created1 = 'collapse' + incident.id.to_s  %>
       <% heading = 'heading' + incident.id.to_s  %>
       <% severityLevel = 'severityLevel' + incident.severity.to_s %>
@@ -71,10 +71,11 @@
       	      </h4>
             </div>
           <div id=<%=created1%>  class="panel-collapse collapse" role="tabpanel" aria-labelledby=<%=heading%>>
-        	  <div class='well'> 
+        	  <div class='well'>
       		    <p><span class='bold'>Description: </span><%= incident.description %> </p>
       		    <p><span class='bold'>Severity: </span><%= incident.severity %> </p>
       		    <p><span class='bold'>Location: </span><%= incident.location %> </p>
+                    <p><span class='bold'>Reported at: </span><%= incident.created_at %> </p>
       		    <div class='btn-group btn-group-sm'>
       		      <div class="btn-group icons">
       		        <%= link_to('Show', incident, :class => 'btn btn-default')%>
@@ -85,12 +86,12 @@
       		  </div>
     	    </div>
     	  </div>
-     
+
      	  <% end %>
     </div>
-</div>	  
+</div>
 <br>
-<br><!-- 
+<br><!--
 
 <%= link_to 'New Incident', new_incident_path %>
  -->
