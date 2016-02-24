@@ -1,6 +1,6 @@
 # comp120-spring2016-team10
 Matteo Davis, Alex Ravan, Jacob Katsiaficas
-2/15/16
+Updated: 2/24/16
 
 ## Ruby Packages Used
 Rails
@@ -18,6 +18,33 @@ bundler
 		gem 'jbuilder', '~> 2.0'
 		gem 'sdoc', '~> 0.4.0', group: :doc
 		gem 'bootstrap-generators', '~> 3.3.4'
+		gem 'capybara'
+		gem 'factory_girl_rails', '~> 4.6'
+		gem 'rspec-rails'
+
+## installation & startup
+Install Rails v4.2.5.1, Postgresql v9.4.5, Ruby v2.3.0p0
+Run "bundle install" for necessary gems.
+Set up a Postgresql DB for "ncdntt-development", "ncdntt-production", and "ncdntt-test"
+Start postgresql
+run "rails s", and open the port in your browser (most likely localhost:3000)
+
+## Testing
+
+The testing suite we're using is rspec combined with FactoryGirl, both installed via Ruby gems.
+FactoryGirl allows us to create a Factory, with a sample version of our incident which we will
+pass to the various methods of the controller. 
+We wrote tests for basic functions of our models and controllers.
+To run the model tests, from the 'ncdntt' directory, run:
+"rspec spec/models/incident_model_spec.rb"
+
+These tests check for the validation of all of our required fields.
+
+To run the controller tests, from the 'ncdntt' directory, run: 
+"rspec spec/controllers/incident_controller_spec.rb"
+
+These tests check for the creation and addition of new incidents to our database
+and the proper rendering of our :show, :create, :edit, and :new templates.
 
 ## Other APIs and Dependencies
 Bootstrap
