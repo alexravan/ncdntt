@@ -30,6 +30,11 @@
     <%= @incident.location %>
   </p>
 
+  <p>
+          <strong>Time Created: </strong>
+          <%= @incident.created_at %>
+  </p>
+
 <!--   <p>
     <strong>Is closed:</strong>
     <%= @incident.is_closed %>
@@ -47,7 +52,7 @@
  -->
  <div class='btn-group btn-group-sm'>
   <div class="btn-group icons">
-    <%= link_to('Edit', edit_incident_path(@incident), :class => 'btn btn-default', :method => :get) %> 
+    <%= link_to('Edit', edit_incident_path(@incident), :class => 'btn btn-default', :method => :get) %>
     <%= link_to('Back', incidents_path, :class => 'btn btn-default') %>
   </div>
 </div>
