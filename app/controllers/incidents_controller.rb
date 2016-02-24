@@ -16,7 +16,6 @@ class IncidentsController < ApplicationController
   # GET /incidents/new
   def new
     @incident = Incident.new
-    @image = Image.new
   end
 
   # GET /incidents/1/edit

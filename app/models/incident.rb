@@ -4,6 +4,4 @@ class Incident < ActiveRecord::Base
 	validates :location, presence: true
 	validates :title, presence: true
 	validates :severity, presence: true
-    has_one :image
-    # has_one :category
 end
