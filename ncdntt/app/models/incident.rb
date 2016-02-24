@@ -5,5 +5,5 @@ class Incident < ActiveRecord::Base
 	validates :title, presence: true
 	validates :severity, presence: true
     has_one :image
-    has_one :category
+    # has_one :category
 end
