@@ -5,6 +5,7 @@ class IncidentsController < ApplicationController
   # GET /incidents.json
   def index
     @incidents = Incident.all
+    @incident = Incident.new 
   end
 
   # GET /incidents/1
@@ -19,6 +20,7 @@ class IncidentsController < ApplicationController
 
   # GET /incidents/1/edit
   def edit
+
   end
 
   # POST /incidents
