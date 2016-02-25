@@ -43,7 +43,7 @@
     <div id="accordion" role="tablist" aria-multiselectable="true">
 
       <!-- Single button -->
-      <div class="btn-group">
+      <!-- <div class="btn-group">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Sort by
         </button>
@@ -54,7 +54,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Separated link</a>
         </div>
-      </div>
+      </div> -->
 
     	<% @incidents.order("severity").reverse.each do |incident|  %>
       <% created =  '#' + 'collapse' + incident.id.to_s  %>
