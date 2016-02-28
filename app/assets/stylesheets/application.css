@@ -27,6 +27,10 @@ html, body {
     border-style: solid;
     border-color: black;
 }
+#individualIncident:hover{
+    box-shadow: 0 0 10px #9ecaed;
+}
+
 
 .buttons-outer {
     float:left;
@@ -252,7 +256,6 @@ div.img-circ{
 
 
 #page-content-wrapper {
-    padding-top: 80px;
 }
 
 @media (max-width: 767px) {
