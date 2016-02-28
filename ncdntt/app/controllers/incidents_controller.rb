@@ -5,7 +5,7 @@ class IncidentsController < ApplicationController
   # GET /incidents.json
   def index
     @incidents = Incident.all
-    @incident = Incident.new 
+    @incident = Incident.new
   end
 
   # GET /incidents/1
@@ -72,6 +72,6 @@ class IncidentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def incident_params
-      params.require(:incident).permit(:title, :user_id, :category, :description, :severity, :location, :is_closed, :date_closed, :closing_comment, :media)
+      params.require(:incident).permit(:title, :user_id, :category, :description, :severity, :location, :is_closed, :date_closed, :closing_comment, :media, :occured_at)
     end
 end
