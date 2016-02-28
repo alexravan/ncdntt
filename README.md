@@ -1,6 +1,6 @@
 # comp120-spring2016-team10
-Matteo Davis, Alex Ravan, Jacob Katsiaficas
-Updated: 2/24/16
+Matteo Davis, Alex Ravan, Jacob Katsiaficas, John Gallagher 
+Updated: 2/25/16
 
 ## Ruby Packages Used
 Rails
