@@ -39,12 +39,8 @@ ActiveRecord::Schema.define(version: 20160228174839) do
     t.boolean  "is_closed"
     t.datetime "date_closed"
     t.string   "closing_comment"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "media_file_name"
     t.string   "media_content_type"
     t.integer  "media_file_size"
