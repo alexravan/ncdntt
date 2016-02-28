@@ -31,8 +31,18 @@
   </p>
 
   <p>
-          <strong>Time Reported: </strong>
+          <strong>Time Reported:</strong>
           <%= @incident.created_at %>
+  </p>
+
+  <p>
+          <strong>Reported By: </strong>
+          <%= @incident.user_id %>
+  </p>
+
+  <p>
+          <strong>Media:</strong>
+          <%= @incident.media.url(:square) %>
   </p>
 
 <!--   <p>

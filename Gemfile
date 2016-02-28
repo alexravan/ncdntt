@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.3.0"
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
@@ -18,6 +18,10 @@ gem 'capybara'
 gem 'factory_girl_rails', '~> 4.6'
 
 gem 'rspec-rails'
+
+gem 'paperclip'
+
+gem 'aws-sdk', '~>1.x'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

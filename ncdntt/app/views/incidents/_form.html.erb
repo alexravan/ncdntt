@@ -1,4 +1,4 @@
-<%= form_for(@incident) do |f| %>
+<%= form_for(@incident, multipart:true) do |f| %>
   <% if @incident.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@incident.errors.count, "error") %> prohibited this incident from being saved:</h2>
@@ -38,6 +38,10 @@
   <div class="field">
     <%= f.label :location %><br>
     <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :media %>
+    <%= f.file_field :media %>
   </div>
     <!--   <div class="field">
         <%= f.label :is_closed %><br>
