@@ -64,14 +64,12 @@
       		    <p><span class='bold'>Description: </span><%= incident.description %> </p>
       		    <p><span class='bold'>Severity: </span><%= incident.severity %> </p>
       		    <p><span class='bold'>Location: </span><%= incident.location %> </p>
-                    <p><span class='bold'>Occured at: </span><%= incident.occured_at %></p>
                     <p><span class='bold'>Reported at: </span><%= incident.created_at %> </p>
-                    <p><span class='bold'>Reported by: </span><%= incident.user_id %></p>
       		    <div class='btn-group btn-group-sm'>
       		      <div class="btn-group icons">
       		        <%= link_to('Show', incident, :class => 'btn btn-default')%>
       		        <%= link_to('Edit', edit_incident_path(incident), :class => 'btn btn-default', :method => :get) %>
-      		        <%= link_to('Mark Closed', incident, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default') %>
+					<%= link_to('Mark Closed', incident_path(incident, :incident => { :is_closed => true, :date_closed => DateTime.now}), :method => :put, data: {:confirm => "Are you sure?"}, :class => 'btn btn-default') %>
       		      </div>
       		    </div>
       		  </div>
