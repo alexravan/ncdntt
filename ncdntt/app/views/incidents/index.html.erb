@@ -42,34 +42,21 @@
 <div class='col-xs-12 col-sm-8 col-md-6 col-lg-4'>
     <div id="accordion" role="tablist" aria-multiselectable="true">
 
-      <!-- Single button -->
-      <!-- <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Sort by
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Severity</a>
-          <a class="dropdown-item" href="#">Time</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
-        </div>
-      </div> -->
-
-    	<% @incidents.order("severity").reverse.each do |incident|  %>
+      <% @incidents.order("severity").reverse.each do |incident|  %>
       <% created =  '#' + 'collapse' + incident.id.to_s  %>
       <% created1 = 'collapse' + incident.id.to_s  %>
       <% heading = 'heading' + incident.id.to_s  %>
       <% severityLevel = 'severityLevel' + incident.severity.to_s %>
-    	  <div class="panel panel-default">
+    	  <div class="panel panel-default" id="individualIncident">
+    	  <a data-toggle="collapse" data-parent="#accordion" href=<%=created%> aria-expanded="true" aria-controls=<%=created1%>>
+
           <div class= <%= severityLevel %>></div>
             <div class="panel-heading" role="tab" id="headingOne">
       	      <h4 class="panel-title">
-      	        <a data-toggle="collapse" data-parent="#accordion" href=<%=created%> aria-expanded="true" aria-controls=<%=created1%>>
       	        	    <p><span class='bold'>Title: </span><%= incident.title %> </p>
-      	        </a>
       	      </h4>
             </div>
+
           <div id=<%=created1%>  class="panel-collapse collapse" role="tabpanel" aria-labelledby=<%=heading%>>
         	  <div class='well'>
       		    <p><span class='bold'>Description: </span><%= incident.description %> </p>
@@ -85,7 +72,9 @@
       		    </div>
       		  </div>
     	    </div>
-    	  </div>
+    	    </a>
+    	    </div>
+
 
      	  <% end %>
     </div>
