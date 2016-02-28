@@ -1,13 +1,13 @@
 #Benchmarks Before Optimization
 
-## Grade C
-### Overall performance score 75	Ruleset applied: YSlow(V2)	
+### Grade C
+#### Overall performance score 75	Ruleset applied: YSlow(V2)	
 1. Grade F on Make fewer HTTP requests
-..*This page has 18 external Javascript scripts. Try combining them into one.
-..*This page has 6 external stylesheets. Try combining them into one.
+..* This page has 18 external Javascript scripts. Try combining them into one.
+..* This page has 6 external stylesheets. Try combining them into one.
 
 2. Grade F on Use a Content Delivery Network (CDN)
-..*There are 24 static components that are not on CDN.
+..* There are 24 static components that are not on CDN.
 
 3. Grade A on Avoid empty src or href
 
@@ -28,7 +28,7 @@
 10. Grade A on Reduce DNS lookups
 
 11. Grade C on Minify JavaScript and CSS
-..*There are 3 components that can be minified
+..* There are 3 components that can be minified
 
 12. Grade A on Avoid URL redirects
 
