@@ -3,9 +3,9 @@ Matteo Davis, Alex Ravan, Jacob Katsiaficas, John Gallagher
 Updated: 2/25/16
 
 
-#List of Features to Add:
+##List of Features to Add:
 
-##Core:
+###Core:
         1. Display uploaded images
         2. Get caching working
         3. Implement user logins
@@ -13,7 +13,7 @@ Updated: 2/25/16
         5. Implement ticket close comments
 
 
-##Nice to Haves:
+###Nice to Haves:
         1. "Bootstrapify" upload button
         2.  Add a button that takes a mobile user to their camera app
         3.  User specified sorting on timeline page
