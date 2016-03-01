@@ -10,6 +10,7 @@ Updated: 2/25/16
         2. Get caching working
         3. Implement user logins
         4. Implement my tickets
+        5. Implement ticket close comments
 
 
 ##Nice to Haves:
