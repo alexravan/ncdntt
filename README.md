@@ -17,6 +17,7 @@ Updated: 2/25/16
         1. "Bootstrapify" upload button
         2.  Add a button that takes a mobile user to their camera app
         3.  User specified sorting on timeline page
+        4.  Add maps
 
 
 
