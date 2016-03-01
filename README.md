@@ -1,6 +1,24 @@
 # comp120-spring2016-team10
-Matteo Davis, Alex Ravan, Jacob Katsiaficas, John Gallagher 
+Matteo Davis, Alex Ravan, Jacob Katsiaficas, John Gallagher
 Updated: 2/25/16
+
+
+##List of Features to Add:
+
+###Core:
+        1. Display uploaded images
+        2. Get caching working
+        3. Implement user logins
+        4. Implement my tickets
+        5. Implement ticket close comments
+
+
+###Nice to Haves:
+        1. "Bootstrapify" upload button
+        2.  Add a button that takes a mobile user to their camera app
+        3.  User specified sorting on timeline page
+
+
 
 ## Ruby Packages Used
 Rails
@@ -33,14 +51,14 @@ run "rails s", and open the port in your browser (most likely localhost:3000)
 
 The testing suite we're using is rspec combined with FactoryGirl, both installed via Ruby gems.
 FactoryGirl allows us to create a Factory, with a sample version of our incident which we will
-pass to the various methods of the controller. 
+pass to the various methods of the controller.
 We wrote tests for basic functions of our models and controllers.
 To run the model tests, from the 'ncdntt' directory, run:
 "rspec spec/models/incident_model_spec.rb"
 
 These tests check for the validation of all of our required fields.
 
-To run the controller tests, from the 'ncdntt' directory, run: 
+To run the controller tests, from the 'ncdntt' directory, run:
 "rspec spec/controllers/incident_controller_spec.rb"
 
 These tests check for the creation and addition of new incidents to our database
@@ -57,20 +75,20 @@ Bootstrap
 
 ## Challenges We Faced
 We faced a few challenges in setting up -- the first of which was getting everyone
-set up on Rails, Ruby, and Postgres with the proper versions. This took us a few hours 
-because we were running on two different environments -- two people are on Mac OS 10 
-and one is using the Debian VM provided to the class, so there were two different sets 
+set up on Rails, Ruby, and Postgres with the proper versions. This took us a few hours
+because we were running on two different environments -- two people are on Mac OS 10
+and one is using the Debian VM provided to the class, so there were two different sets
 of issues faced. The most issues were posed by setting up Postgresql, we had trouble
-with user accounts and permissions. 
+with user accounts and permissions.
 
 ## Why We Chose Rails
 We chose Rails because it is the most robust of the Ruby frameworks -- it is easily
 managed by RVM and does most of the heavy lifting for the developer. In addition,
 due to its recent popularity, there is a wealth of information on almost any problem
-we could run into online. 
+we could run into online.
 
 ## Why We Chose Postgresql
 We had two viable options of DB -- Postgresql and MySQL. We honestly chose Postgresql
-because it seemed like the more popular option, and thus there would be more support 
-for it, both in class and online. We haven't had any issues thus far so we are happy 
-with our choice. 
+because it seemed like the more popular option, and thus there would be more support
+for it, both in class and online. We haven't had any issues thus far so we are happy
+with our choice.
