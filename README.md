@@ -18,6 +18,7 @@ Updated: 2/25/16
         2.  Add a button that takes a mobile user to their camera app
         3.  User specified sorting on timeline page
         4.  Add maps
+	5.  Add a list of closed incidents on a separate timeline (or at the bottom of the current timeline)
 
 
 
