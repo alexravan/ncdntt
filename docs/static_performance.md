@@ -99,3 +99,17 @@
 22. Grade A on Do not scale images in HTML
 
 23. Grade A on Make favicon small and cacheable
+
+#Questions 
+
+1. What optimization techniques did you use?
+    1. Minified CSS and JS 
+    2. Moved JS to bottom of html files 
+    3. Moved some static content to a CDN (Images are hosted on Amazon s3)
+    4. Added expiring headers for static content to cache it locally. 
+2. What tools did you use to test the performance of your product before and after optimizations made? Using no tools for this leg is not acceptable! More below.
+    1. YSlow
+3. What performance aspects have been improved (e.g., loading time, file size)? Please provide numbers, percentages, or letter grades.
+    See above sections.
+4. Are there any lingering potential performance issues?
+    Expires headers were not added at time of our last preformance check. 
