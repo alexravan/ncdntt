@@ -5,23 +5,27 @@ class IncidentsController < ApplicationController
   # GET /incidents.json
   def index
     @incidents = Incident.all
-    @incident = Incident.new 
+    @incident = Incident.new
+    expires_in 1.year, :public => true
   end
 
   # GET /incidents/1
   # GET /incidents/1.json
   def show
+    expires_in 1.year, :public => true
   end
 
   # GET /incidents/new
   def new
     @incident = Incident.new
+        expires_in 1.year, :public => true
+
 
   end
 
   # GET /incidents/1/edit
   def edit
-
+    expires_in 1.year, :public => true
   end
 
   # POST /incidents
@@ -38,6 +42,8 @@ class IncidentsController < ApplicationController
         format.json { render json: @incident.errors, status: :unprocessable_entity }
       end
     end
+        expires_in 1.year, :public => true
+
   end
 
   # PATCH/PUT /incidents/1
@@ -52,6 +58,7 @@ class IncidentsController < ApplicationController
         format.json { render json: @incident.errors, status: :unprocessable_entity }
       end
     end
+        expires_in 1.year, :public => true
   end
 
   # DELETE /incidents/1
