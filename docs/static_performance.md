@@ -112,4 +112,7 @@
 3. What performance aspects have been improved (e.g., loading time, file size)? Please provide numbers, percentages, or letter grades.
     See above sections.
 4. Are there any lingering potential performance issues?
-    Expires headers were not added at time of our last preformance check. 
+    Expires headers were not implemented for the following files:
+        1. application.css
+        2. application.js
+        3. favicon
