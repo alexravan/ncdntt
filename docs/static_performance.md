@@ -47,3 +47,55 @@
 19. Grade A on Reduce cookie size
 
 20. Grade F on Use cookie-free domains
+
+
+#Benchmarks After Optimization
+
+### Grade A
+#### Overall performance score 95   Ruleset applied: YSlow(V2)  
+
+1. Grade A on Make fewer HTTP requests
+
+2. Grade A on Use a Content Delivery Network (CDN)
+
+3. Grade A on Avoid empty src or href
+
+4. Grade F on Add Expires headers
+
+5. Grade B on Compress components with gzip
+
+6. Grade A on Put CSS at top
+
+7. Grade A on Put JavaScript at bottom
+
+8. Grade A on Avoid CSS expressions
+
+9. Grade n/a on Make JavaScript and CSS external
+
+10. Grade A on Reduce DNS lookups
+
+11. Grade A on Minify JavaScript and CSS
+
+12. Grade A on Avoid URL redirects
+
+13. Grade A on Remove duplicate JavaScript and CSS
+
+14. Grade A on Configure entity tags (ETags)
+
+15. Grade A on Make AJAX cacheable
+
+16. Grade A on Use GET for AJAX requests
+
+17. Grade A on Reduce the number of DOM elements
+
+18. Grade A on Avoid HTTP 404 (Not Found) error
+
+19. Grade A on Reduce cookie size
+
+20. Grade A on Use cookie-free domains
+
+21. Grade A on Avoid AlphaImageLoader filter
+
+22. Grade A on Do not scale images in HTML
+
+23. Grade A on Make favicon small and cacheable
