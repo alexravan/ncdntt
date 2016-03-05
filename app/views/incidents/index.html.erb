@@ -53,8 +53,7 @@
             <div class="panel-heading" role="tab" id="headingOne">
       	      <h4 class="panel-title">
       	      <a data-toggle="collapse" data-parent="#accordion" href=<%=created%> aria-expanded="true" aria-controls=<%=created1%>>
-
-      	        	    <p><span class='bold'>Title: </span><%= incident.title %> </p>
+      	        	    <p><span class='bold'>Title: </span><%= incident.title.truncate(40) %> </p>
       	        	    </a>
 
       	      </h4>
@@ -81,7 +80,12 @@
     </div>
 </div>
 <br>
-<br><!--
+<br>
+
+<!--
+
+
+
 
 <%= link_to 'New Incident', new_incident_path %>
  -->
