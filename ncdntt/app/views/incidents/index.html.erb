@@ -47,17 +47,18 @@
       <% created1 = 'collapse' + incident.id.to_s  %>
       <% heading = 'heading' + incident.id.to_s  %>
       <% severityLevel = 'severityLevel' + incident.severity.to_s %>
-    	  <div class="panel panel-default" id="individualIncident">
+    	  <div class="panel panel-default individualIncident">
+        <a data-toggle="collapse" data-parent="#accordion" href=<%=created%> aria-expanded="true" aria-controls=<%=created1%>>
 
           <div class= <%= severityLevel %>></div>
             <div class="panel-heading" role="tab" id="headingOne">
-      	      <h4 class="panel-title">
-      	      <a data-toggle="collapse" data-parent="#accordion" href=<%=created%> aria-expanded="true" aria-controls=<%=created1%>>
-      	        	    <p><span class='bold'>Title: </span><%= incident.title.truncate(40) %> </p>
-      	        	    </a>
 
+      	      <h4 class="panel-title">
+      	        	    <p><span class='bold'>Title: </span><%= incident.title.truncate(40) %> </p>
       	      </h4>
             </div>
+            </a>
+
           <div id=<%=created1%>  class="panel-collapse collapse" role="tabpanel" aria-labelledby=<%=heading%>>
         	  <div class='well'>
       		    <p><span class='bold'>Description: </span><%= incident.description %> </p>
