@@ -27,7 +27,7 @@ html, body {
     border-style: solid;
     border-color: black;
 }
-#individualIncident:hover{
+.individualIncident:hover{
     box-shadow: 0 0 10px #9ecaed;
 }
 
@@ -446,4 +446,8 @@ img.circle {
     float: right;
     position: absolute;
     right: 0;
+}
+
+a:hover {
+    text-decoration: none;
 }
