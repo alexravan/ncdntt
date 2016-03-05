@@ -29,19 +29,19 @@
   </p>
 
   <p>
-          <strong>Time Reported:</strong>
-          <%= @incident.created_at %>
+    <strong>Time Reported:</strong>
+    <%= @incident.created_at %>
   </p>
 
   <p>
-          <strong>Reported By: </strong>
-          <%= @incident.user_id %>
+    <strong>Reported By: </strong>
+    <%= @incident.user_id %>
   </p>
 
   <p>
-          <strong>Media:</strong>
-          <br/>
-         <img src=" <%= @incident.media.url(:square) %>">
+    <strong>Media:</strong>
+    <br/>
+   <img src=" <%= @incident.media.url(:square) %>">
   </p>
 
 <!--   <p>
