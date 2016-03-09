@@ -1,11 +1,12 @@
 class Incident < ActiveRecord::Base
-	validates :user_id, presence: true
-	# validates :category_id, presence: true
+	belongs_to :user
+	belongs_to :category
+	validates :category, presence: true
 	validates :location, presence: true
 	validates :title, presence: true
 	validates :severity, presence: true
 	 # This method associates the attribute ":avatar" with a file attachment
-	belongs_to :category
+	 # belongs_to :category
 	has_attached_file :media, styles: {
 		thumb: '100x100>',
 		square: '200x200#',
