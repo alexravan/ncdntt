@@ -19,8 +19,6 @@ class IncidentsController < ApplicationController
   def new
     @incident = Incident.new
         expires_in 1.year, :public => true
-
-
   end
 
   # GET /incidents/1/edit

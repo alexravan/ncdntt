@@ -3,14 +3,10 @@
 <p id="notice"><%= notice %></p>
 
 <div class = 'col-xs-12 col-sm-10 col-md-6'>
-  <p>
-    <strong>User:</strong>
-    <%= @incident.user_id %>
-  </p>
 
   <p>
     <strong>Category:</strong>
-    <%= @incident.category.name %>
+    <%= @incident.category %>
   </p>
 
   <p>
@@ -31,11 +27,6 @@
   <p>
     <strong>Time Reported:</strong>
     <%= @incident.created_at %>
-  </p>
-
-  <p>
-    <strong>Reported By: </strong>
-    <%= @incident.user_id %>
   </p>
 
   <p>
