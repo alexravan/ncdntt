@@ -1,5 +1,6 @@
 class Incident < ActiveRecord::Base
 	belongs_to :user
+	belongs_to :category
 	validates :category, presence: true
 	validates :location, presence: true
 	validates :title, presence: true
