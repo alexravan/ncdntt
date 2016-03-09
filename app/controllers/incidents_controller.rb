@@ -32,7 +32,8 @@ class IncidentsController < ApplicationController
   # POST /incidents.json
   def create
     @incident = Incident.new(incident_params)
-
+    puts incident_params
+    puts "hello"
     respond_to do |format|
       if @incident.save
         format.html { redirect_to @incident, notice: 'Incident was successfully created.' }
@@ -79,6 +80,6 @@ class IncidentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def incident_params
-      params.require(:incident).permit(:title, :user_id, :category, :description, :severity, :location, :is_closed, :date_closed, :closing_comment, :media)
+      params.require(:incident).permit(:title, :user_id, :category_id, :description, :severity, :location, :is_closed, :date_closed, :closing_comment, :media)
     end
 end
