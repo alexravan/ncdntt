@@ -5,7 +5,7 @@ class Incident < ActiveRecord::Base
 	validates :title, presence: true
 	validates :severity, presence: true
 	 # This method associates the attribute ":avatar" with a file attachment
-	 belongs_to :category
+	 # belongs_to :category
 	has_attached_file :media, styles: {
 		thumb: '100x100>',
 		square: '200x200#',
