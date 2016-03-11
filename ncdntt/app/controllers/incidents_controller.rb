@@ -1,6 +1,8 @@
 class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  # before_action :require_permission, only: :edit
+
   # GET /incidents
   # GET /incidents.json
   def index
@@ -68,6 +70,8 @@ class IncidentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
