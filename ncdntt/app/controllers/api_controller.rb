@@ -81,25 +81,6 @@ class ApiController < ApplicationController
 		end
 # POST delete incident, give id // return nothing
 	def deleteIncident
-		#Incident.find(id).update(@new_params)
-		#@new_params = {
-		#	:id => params[:id].to_i,
-		#	:title => params[:title].to_s,
-		#	:user_id => params[:user_id].to_i,
-		#	:category_id => params[:category].to_i,
-		#	:severity => params[:severity].to_i,
-		#	:location => params[:location].to_s,
-		#	:is_closed => params[:is_closed].to_i,
-		#	:severity => params[:severity].to_i,
-		#	:date_closed => params[:date_closed].to_s,
-		#	:created_at => params[:created_at].to_s,
-		#	:updated_at => params[:updated_at].to_s,
-		#	:closing_comment => params[:closing_comment].to_s,
-		#}
-		#respond_to do |format|
-		#	format.json { render :json => @new_params.to_json }
-		#	format.html { render :json => @new_params.to_json }
-		#end
 		id = params[:id].to_i
 		Incident.find(id)
 		respond_to do |format|
