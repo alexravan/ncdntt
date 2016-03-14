@@ -44,10 +44,12 @@ class ApiController < ApplicationController
 	# 			Incident.create(params)
 	# 	end
 	# end
+	
 # POST update incident, give id and fields // return incident
 # POST delete incident, give id // return nothing
 	def createIncident
 	end
+
 # POST update incident, give id and fields // return incident
 # need ID param, then any updated fields
 	def updateIncident
@@ -79,6 +81,7 @@ class ApiController < ApplicationController
 				format.html {render :json => Incident.find(id).to_json}
 			end
 		end
+
 # POST delete incident, give id // return nothing
 	def deleteIncident
 		id = params[:id].to_i
