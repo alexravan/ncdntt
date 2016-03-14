@@ -315,9 +315,11 @@ div.img-circ{
     position: fixed;
     bottom: 0px;
     background: rgb(30, 33, 42);
-    height: 170px;
-    width: 100%;
+    height: 200px;
     z-index: -1;
+    width: auto;
+    width: 250px;
+
 }
 
 #userinfo {
@@ -327,8 +329,10 @@ div.img-circ{
     position: fixed;
     bottom: 10px;
     left: 0px;
+    width: 250px;
     text-align: center;
-    background: red;
+    padding-top: 30px;
+    /*background: red;*/
     /*line-height: 30px;*/
 
 }

@@ -68,19 +68,7 @@
             <li>
                 <a href="#"><span class="glyphicon glyphicon-book"></span>  My Tickets</a>
             </li>
-            <% if user_signed_in? %> 
-                <li>
-                    <%= link_to current_user.first_name + " " + current_user.last_name , edit_user_registration_path %>
-                    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-                </li>
-            <% else %> 
-              <li>
-                  <%= link_to "Sign Up", new_user_registration_path %>
-              </li>
-              <li>
-                  <%= link_to "Login", new_user_session_path %>
-              </li>
-            <% end %>
+            
            <!--  <li>
                 <a href="#">About</a>
             </li>
@@ -92,15 +80,27 @@
             </li> -->
         </ul>
       <!-- </div> -->
-     <!--  <div id='user' class='col-xs-12'>
+      <div id='user'>
+        <div id='userinfo' >
+         <% if user_signed_in? %> 
         <div class='round'>
           <img src="https://pbs.twimg.com/profile_images/527918621230903296/WAB5n8l8_400x400.jpeg">
         </div>
-        <div id='userinfo' class='col-xs-12'>
-          <h6>Tina Belcher</h6>
-          <p>Grill Cook</p>
+                <!-- <li> -->
+                    <p><%= link_to current_user.first_name + " " + current_user.last_name , edit_user_registration_path %></p>
+                    <p><%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
+                <!-- </li> -->
+            <% else %> 
+              <!-- <li> -->
+
+                  <p> <%= link_to "Sign Up", new_user_registration_path %> </p>
+              <!-- </li> -->
+              <!-- <li> -->
+                  <p><%= link_to "Login", new_user_session_path %></p>
+              <!-- </li> -->
+            <% end %>
         </div>
-      </div> -->
+      </div> 
 
     </div>
     <!-- /#sidebar-wrapper -->
