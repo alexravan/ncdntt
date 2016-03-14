@@ -37,12 +37,13 @@
     <%= @incident.created_at %>
   </p>
 
+  <% if @incident.media.url(:square) != '/media/square/missing.png' %>
   <p>
     <strong>Media:</strong>
     <br/>
    <img src=" <%= @incident.media.url(:square) %>">
   </p>
-
+  <%end%>
 <!--   <p>
     <strong>Is closed:</strong>
     <%= @incident.is_closed %>

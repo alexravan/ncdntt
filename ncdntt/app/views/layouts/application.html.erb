@@ -65,9 +65,11 @@
                   New Incident
                 <% end %>
             </li>
+             <% if user_signed_in? %> 
             <li>
-                <a href="#"><span class="glyphicon glyphicon-book"></span>  My Tickets</a>
+                <a href="/show_mine"><span class="glyphicon glyphicon-book"></span>  My Tickets</a>
             </li>
+            <% end %>
             
            <!--  <li>
                 <a href="#">About</a>
