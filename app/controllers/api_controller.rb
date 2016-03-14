@@ -44,7 +44,7 @@ class ApiController < ApplicationController
 	# 			Incident.create(params)
 	# 	end
 	# end
-	
+
 # POST update incident, give id and fields // return incident
 # POST delete incident, give id // return nothing
 	def createIncident
@@ -52,30 +52,44 @@ class ApiController < ApplicationController
 
 # POST update incident, give id and fields // return incident
 # need ID param, then any updated fields
-	def updateIncident
+	 def updateIncident
 		id = params[:id].to_i
-		@new_params = {
-			:title => params[:title].to_s,
-			:category_id => params[:category].to_i,
-			:severity => params[:severity].to_i,
-			:location => params[:location].to_s,
-			:description => params[:description].to_s
-		}
-		Incident.find(id).update(@new_params)
+		# @new_params = {}
+		# if (params[:title].blank? == false)
+		# 		@new_params[:title] => params[:title].to_s
+		# end 
+		# if (params[:category_id].present?)
+		# 		@new_params[:category_id] => params[:category_id].to_i
+		# end
+		# if (params[:severity].present?)
+		# 		@new_params[:severity] => params[:severity].to_i
+		# end
+		# if (params[:location].present?)
+		# 		@new_params[:location] => params[:location].to_s
+		# end
+		# if (params[:description].present?)	
+		# 		@new_params[:description] => params[:description].to_s
+		# end
+		# Incident.find(id).update(@new_params)
 		respond_to do |format|
 			format.json {render :json => Incident.find(id).to_json}
 			format.html {render :json => Incident.find(id).to_json}
-		end
+		end	
 	end
 
 # POST close incident, give ID and closing comment
 	def closeIncident
 		id = params[:id].to_i
-		@new_params = {
+		inc = Incident.find(id)
+		new_params = {
 			:date_closed => DateTime.now,
-			:closing_comment => params[:comment].to_s
+			:closing_comment => params[:comment].to_s,
+			:location => inc[:location].to_s,
+			:category_id => inc[:category_id],
+			:title => inc[:title],
+			:severity => inc[:severity]
 		}
-		Incident.find(id).update(@new_params)
+		Incident.find(id).update(new_params)
 			respond_to do |format|
 				format.json {render :json => Incident.find(id).to_json}
 				format.html {render :json => Incident.find(id).to_json}
