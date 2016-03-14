@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   post 'api/createincident', to: 'api#createIncident'
 
+  post 'api/deleteincident', to: 'api#deleteIncident'
+
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   # Example resource route with options:
