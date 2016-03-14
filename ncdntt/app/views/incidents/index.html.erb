@@ -39,8 +39,7 @@
 <% content_for :title, "Incident Dashboard" %>
 <div class='col-xs-12 col-sm-8 col-md-6 col-lg-4'>
     <div id="accordion" role="tablist" aria-multiselectable="true">
-
-      <% @incidents.order("severity").reverse.each do |incident|  %>
+      <% @incidents.active.order("severity").reverse.each do |incident|  %>
       <% created =  '#' + 'collapse' + incident.id.to_s  %>
       <% created1 = 'collapse' + incident.id.to_s  %>
       <% heading = 'heading' + incident.id.to_s  %>
