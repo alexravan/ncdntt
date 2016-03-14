@@ -54,19 +54,31 @@ class ApiController < ApplicationController
 		id = params[:id].to_i
 		@new_params = {
 			:title => params[:title].to_s,
-			:user_id => params[:user_id].to_i,
-			# MAY NEED TO FIX!!! 
 			:category_id => params[:category].to_i,
 			:severity => params[:severity].to_i,
-			:location => params[:location].to_s
+			:location => params[:location].to_s,
+			:description => params[:description].to_s
 		}
 		Incident.find(id).update(@new_params)
 		respond_to do |format|
-			format.json {render :json => params.to_json}
-			format.html {render :json => params.to_json}
+			format.json {render :json => Incident.find(id).to_json}
+			format.html {render :json => Incident.find(id).to_json}
 		end
 	end
 
+# POST close incident, give ID and closing comment
+	def closeIncident 
+		id = params[:id].to_i
+		@new_params = {
+			:date_closed => DateTime.now,
+			:closing_comment => params[:comment].to_s
+		}
+		Incident.find(id).update(@new_params)
+			respond_to do |format|
+				format.json {render :json => Incident.find(id).to_json}
+				format.html {render :json => Incident.find(id).to_json}
+			end
+		end
 # POST delete incident, give id // return nothing 
 	# def deleteIncident
 	# 	#@request.env['RAW_POST_DATA'] = @new_project_json.to_json
