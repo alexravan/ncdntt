@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :incidents
+  resources :incidents do
+      member do
+      get :close
+      patch :update_close
+    end
+  end
   root "incidents#index"
   get '/show_mine', to: 'incidents#show_mine'
+
+  
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

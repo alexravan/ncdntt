@@ -61,6 +61,25 @@ class IncidentsController < ApplicationController
         expires_in 1.year, :public => true
   end
 
+# GET /incidents/1/edit
+  def close
+    @incident = Incident.find(params[:id])
+  end
+
+  def update_close
+        @incident = Incident.find(params[:id])
+    respond_to do |format|
+      if @incident.update(incident_params)
+        format.html { redirect_to @incident, notice: 'Incident was successfully closed.' }
+        format.json { render :show, status: :ok, location: @incident }
+      else
+        format.html { render :close }
+        format.json { render json: @incident.errors, status: :unprocessable_entity }
+      end
+    end
+        expires_in 1.year, :public => true
+  end
+
   def show_mine 
      if current_user
         @incidents = current_user.incidents
@@ -69,6 +88,10 @@ class IncidentsController < ApplicationController
     end
     expires_in 1.year, :public => true
   end
+
+
+  
+
 
   # DELETE /incidents/1
   # DELETE /incidents/1.json

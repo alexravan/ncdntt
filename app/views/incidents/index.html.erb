@@ -66,7 +66,7 @@
       		      <div class="btn-group icons">
       		        <%= link_to('Show', incident, :class => 'btn btn-default')%>
       		        <%= link_to('Edit', edit_incident_path(incident), :class => 'btn btn-default', :method => :get) %>
-      		        <%= link_to('Mark Closed', incident, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default') %>
+      		        <%= link_to('Mark Closed', close_incident_path(incident), :class => 'btn btn-default', :method => :get)  %>
       		      </div>
       		    </div>
       		  </div>
