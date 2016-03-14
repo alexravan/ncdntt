@@ -61,6 +61,15 @@ class IncidentsController < ApplicationController
         expires_in 1.year, :public => true
   end
 
+  def show_mine 
+     if current_user
+        @incidents = current_user.incidents
+     else 
+      redirect_to incidents_url, flash: { :error => "You are not logged in" }
+    end
+    expires_in 1.year, :public => true
+  end
+
   # DELETE /incidents/1
   # DELETE /incidents/1.json
   def destroy
