@@ -5,6 +5,9 @@ class Incident < ActiveRecord::Base
 	validates :location, presence: true
 	validates :title, presence: true
 	validates :severity, presence: true
+	scope :active,  -> {
+		where(:is_closed => false)
+	}
 	 # This method associates the attribute ":avatar" with a file attachment
 	 # belongs_to :category
 	has_attached_file :media, styles: {
