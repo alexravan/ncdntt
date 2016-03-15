@@ -32,3 +32,39 @@ Category.create(name: 'Oil and Gas')
 Category.create(name: 'Radiation')
 Category.create(name: 'Scaffolding')
 Category.create(name: 'Training')
+
+user1 = User.new
+user1.email = 'MINERVA@GAMBLE.com'
+user1.first_name = 'MINERVA'
+user1.last_name = 'GAMBLE'
+user1.password = '12345678'
+user1.password_confirmation = '12345678'
+user1.save!
+user2 = User.new
+user2.email = 'JOY@MUNOZ.com'
+user2.first_name = 'JOY'
+user2.last_name = 'MUNOZ'
+user2.password = '12345678'
+user2.password_confirmation = '12345678'
+user2.save!
+user3 = User.new
+user3.email = 'NEWTON@GIBSON.com'
+user3.first_name = 'NEWTON'
+user3.last_name = 'GIBSON'
+user3.password = '12345678'
+user3.password_confirmation = '12345678'
+user3.save!
+user4 = User.new
+user4.email = 'DENNIS@HARRISON.com'
+user4.first_name = 'DENNIS'
+user4.last_name = 'HARRISON'
+user4.password = '12345678'
+user4.password_confirmation = '12345678'
+user4.save!
+user5 = User.new
+user5.email = 'CARY@CARR.com'
+user5.first_name = 'CARY'
+user5.last_name = 'CARR'
+user5.password = '12345678'
+user5.password_confirmation = '12345678'
+user5.save!
