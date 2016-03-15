@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   end
   root "incidents#index"
   get '/show_mine', to: 'incidents#show_mine'
-
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -27,9 +25,10 @@ Rails.application.routes.draw do
 
   post 'api/updateIncident', to: 'api#updateIncident'
 
+  post 'api/closeIncident', to: 'api#closeIncident'
+
   post 'api/deleteincident', to: 'api#deleteIncident'
 
-  post 'api/closeIncident', to: 'api#closeIncident'
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   # Example resource route with options:
