@@ -3,8 +3,10 @@ class ApiController < ApplicationController
 	skip_before_filter  :verify_authenticity_token
 
 # TODO: 1. create
-# 		3. make update params optional
 # 		4. create user
+#  		6. User list?
+#  		7. validate required params for requests, give error if not present
+#       8. categories
 
 # GET /api/getIncidents
 	def getIncidents
@@ -29,6 +31,16 @@ class ApiController < ApplicationController
 		end
 	end
 
+# GET /api/getIncident
+# requires ID, returns single incident
+	def getIncident
+		id = params[:id].to_i
+		respond_to do |format|
+			format.json {render :json => Incident.find(id).to_json}
+			format.html {render :json => Incident.find(id).to_json}
+		end	
+	end
+
 # POST create incident // return json incident
 	# def createIncident
 	# 	#@request.env['RAW_POST_DATA'] = @new_project_json.to_json
@@ -49,7 +61,6 @@ class ApiController < ApplicationController
 	# 	end
 	# end
 
-# POST update incident, give id and fields // return incident
 # POST delete incident, give id // return nothing
 	def createIncident
 	end
@@ -58,40 +69,39 @@ class ApiController < ApplicationController
 # need ID param, then any updated fields
 	 def updateIncident
 		id = params[:id].to_i
+		@inci = Incident.find(id)
 		@new_params = {
-			:title => params[:title].to_s,
-			:user_id => params[:user_id].to_i,
-			:category_id => params[:category].to_i,
-			:severity => params[:severity].to_i,
-			:location => params[:location].to_s,
-			:description => params[:description].to_s
+			:title => @inci[:title].to_s,
+			:user_id => @inci[:user_id].to_i,
+			:category_id => @inci[:category_id].to_i,
+			:severity => @inci[:severity].to_i,
+			:location => @inci[:location].to_s,
+			:description => @inci[:description].to_s
 		}
+		if (params[:title].present?)
+				@new_params[:title] = params[:title].to_s
+		end 
+		if (params[:category_id].present?)
+				@new_params[:category_id] = params[:category_id].to_i
+		end
+		if (params[:severity].present?)
+				@new_params[:severity] = params[:severity].to_i
+		end
+		if (params[:location].present?)
+				@new_params[:location] = params[:location].to_s
+		end
+		if (params[:description].present?)	
+				@new_params[:description] = params[:description].to_s
+		end
 		Incident.find(id).update(@new_params)
-		# @new_params = {}
-		# if (params[:title].blank? == false)
-		# 		@new_params[:title] => params[:title].to_s
-		# end 
-		# if (params[:category_id].present?)
-		# 		@new_params[:category_id] => params[:category_id].to_i
-		# end
-		# if (params[:severity].present?)
-		# 		@new_params[:severity] => params[:severity].to_i
-		# end
-		# if (params[:location].present?)
-		# 		@new_params[:location] => params[:location].to_s
-		# end
-		# if (params[:description].present?)	
-		# 		@new_params[:description] => params[:description].to_s
-		# end
-		# Incident.find(id).update(@new_params)
 		respond_to do |format|
 			format.json {render :json => Incident.find(id).to_json}
 			format.html {render :json => Incident.find(id).to_json}
 		end	
 	end
 
-# POST delete incident, give id // return nothing
-# POST close incident, give ID and closing comment
+# POST close incident, give ID and (optional) closing comment
+# will require authorization
 	def closeIncident
 		id = params[:id].to_i
 		@inc = Incident.find(id)
@@ -115,27 +125,9 @@ class ApiController < ApplicationController
 			format.html {render :json => Incident.find(id).to_json}
 		end
 	end
-# POST delete incident, give id // return nothing 
-	# def deleteIncident
-	# 	#@request.env['RAW_POST_DATA'] = @new_project_json.to_json
-	# 	puts "post params are"
-	# 	puts params.inspect
-	# 	puts params[:name]
-
-	# 	if (params[:title] != nil || params[:title]  != ""
-	# 		|| params[:usr] != nil || params[:usr] != ""
-	# 		|| params[:cat] != nil || params[:cat] != ""
-	# 		|| params[:des] != nil || params[:des] != ""
-	# 		|| params[:sev] != nil || params[:sev] != ""
-	# 		|| params[:loc] != nil || params[:loc] != ""
-	# 		|| params[:img] != nil || params[:img] != "")
-
-	# 			puts "All the required parameters are there"
-	# 			Incident.create(params)
-	# 	end
-	# end
 
 # POST delete incident, give id // return nothing
+# will require authorization!
 	def deleteIncident
 		id = params[:id].to_i
 		Incident.find(id)
