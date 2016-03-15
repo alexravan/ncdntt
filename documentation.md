@@ -15,11 +15,10 @@ developers at notARealEmail@fakeServer.com, we'd love to hear from you.
 ## GET /api/getincidents
 
 Takes:
-	* Nothing 
-
-Returns:
-	* If successful: All incidents in the database in the JSON format 
-	* If something went wrong: A error JSON object.
+*Nothing 
+*Returns:
+** If successful: All incidents in the database in the JSON format 
+** If something went wrong: A error JSON object.
 
 ### Example
 ```javascript
