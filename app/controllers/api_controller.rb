@@ -2,6 +2,11 @@ class ApiController < ApplicationController
 	protect_from_forgery with: :null_session
 	skip_before_filter  :verify_authenticity_token
 
+# TODO: 1. create
+# 		2. fix close
+# 		3. "sanitize" update
+# 		4. create user
+
 # GET /api/getIncidents
 	def getIncidents
 		@incidents = Incident.all
@@ -54,7 +59,6 @@ class ApiController < ApplicationController
 # need ID param, then any updated fields
 	 def updateIncident
 		id = params[:id].to_i
-<<<<<<< HEAD
 		@new_params = {
 			:title => params[:title].to_s,
 			:user_id => params[:user_id].to_i,
@@ -64,8 +68,6 @@ class ApiController < ApplicationController
 			:description => params[:description].to_s
 		}
 		Incident.find(id).update(@new_params)
-=======
->>>>>>> c50205d2316517badf1d77e0103ac728dffc135b
 		# @new_params = {}
 		# if (params[:title].blank? == false)
 		# 		@new_params[:title] => params[:title].to_s
@@ -89,29 +91,26 @@ class ApiController < ApplicationController
 		end	
 	end
 
-<<<<<<< HEAD
 # POST delete incident, give id // return nothing
-=======
->>>>>>> c50205d2316517badf1d77e0103ac728dffc135b
 # POST close incident, give ID and closing comment
 	def closeIncident
 		id = params[:id].to_i
-		inc = Incident.find(id)
-		new_params = {
-			:date_closed => DateTime.now,
-			:closing_comment => params[:comment].to_s,
-			:location => inc[:location].to_s,
-			:category_id => inc[:category_id],
-			:title => inc[:title],
-			:severity => inc[:severity]
-		}
+		@inc = Incident.find(id)
+		# new_params = {
+		# 	:date_closed => DateTime.now,
+		# 	:closing_comment => params[:comment].to_s,
+		# 	:location => inc[:location].to_s,
+		# 	:category_id => inc[:category_id],
+		# 	:title => inc[:title],
+		# 	:severity => inc[:severity]
+		# }
+		@inc.update_close(params)
 		Incident.find(id).update(new_params)
 			respond_to do |format|
 				format.json {render :json => Incident.find(id).to_json}
 				format.html {render :json => Incident.find(id).to_json}
 			end
 		end
-<<<<<<< HEAD
 # POST delete incident, give id // return nothing 
 	# def deleteIncident
 	# 	#@request.env['RAW_POST_DATA'] = @new_project_json.to_json
@@ -131,8 +130,6 @@ class ApiController < ApplicationController
 	# 			Incident.create(params)
 	# 	end
 	# end
-=======
->>>>>>> c50205d2316517badf1d77e0103ac728dffc135b
 
 # POST delete incident, give id // return nothing
 	def deleteIncident
