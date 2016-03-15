@@ -8,25 +8,23 @@ Rails.application.routes.draw do
   end
   root "incidents#index"
   get '/show_mine', to: 'incidents#show_mine'
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+# 
+# API ROUTES
+# 
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # GET ALL
   get 'api/getincidents', to: 'api#getIncidents'
+  # GET ONE
+  get 'api/getincident', to: 'api#getIncident'
 
+# CREATE
   post 'api/createincident', to: 'api#createIncident'
-
+# UPDATE
   post 'api/updateIncident', to: 'api#updateIncident'
-
+# CLOSE
   post 'api/closeIncident', to: 'api#closeIncident'
-
+# DELETE
   post 'api/deleteincident', to: 'api#deleteIncident'
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
