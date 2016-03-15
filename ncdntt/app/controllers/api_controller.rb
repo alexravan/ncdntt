@@ -3,8 +3,8 @@ class ApiController < ApplicationController
 	skip_before_filter  :verify_authenticity_token
 
 # TODO: 1. create
-# 		2. fix close
-# 		3. "sanitize" update
+# 		2. make closing comment optional
+# 		3. make update params optional
 # 		4. create user
 
 # GET /api/getIncidents
@@ -96,21 +96,24 @@ class ApiController < ApplicationController
 	def closeIncident
 		id = params[:id].to_i
 		@inc = Incident.find(id)
-		# new_params = {
-		# 	:date_closed => DateTime.now,
-		# 	:closing_comment => params[:comment].to_s,
-		# 	:location => inc[:location].to_s,
-		# 	:category_id => inc[:category_id],
-		# 	:title => inc[:title],
-		# 	:severity => inc[:severity]
-		# }
-		@inc.update_close(params)
-		Incident.find(id).update(new_params)
-			respond_to do |format|
-				format.json {render :json => Incident.find(id).to_json}
-				format.html {render :json => Incident.find(id).to_json}
-			end
+		@new_params = {
+					:title => @inc[:title].to_s,
+					:user_id => @inc[:user_id].to_i,
+					:category_id => @inc[:category_id].to_i,
+					:severity => @inc[:severity].to_i,
+					:location => @inc[:location].to_s,
+					:description => @inc[:description].to_s,
+					:is_closed => true,
+					:date_closed => DateTime.now,
+					# NEEDS TO BE OPTIONAL
+					:closing_comment => params[:closing_comment]
+				}
+		Incident.find(id).update(@new_params)
+		respond_to do |format|
+			format.json {render :json => Incident.find(id).to_json}
+			format.html {render :json => Incident.find(id).to_json}
 		end
+	end
 # POST delete incident, give id // return nothing 
 	# def deleteIncident
 	# 	#@request.env['RAW_POST_DATA'] = @new_project_json.to_json
