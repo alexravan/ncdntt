@@ -3,7 +3,6 @@ class ApiController < ApplicationController
 	skip_before_filter  :verify_authenticity_token
 
 # TODO: 1. create
-# 		2. make closing comment optional
 # 		3. make update params optional
 # 		4. create user
 
@@ -105,9 +104,11 @@ class ApiController < ApplicationController
 					:description => @inc[:description].to_s,
 					:is_closed => true,
 					:date_closed => DateTime.now,
-					# NEEDS TO BE OPTIONAL
-					:closing_comment => params[:closing_comment]
+					:closing_comment => ""
 				}
+		if params[:closing_comment].present?
+			@new_params[:closing_comment] = params[:closing_comment]
+		end
 		Incident.find(id).update(@new_params)
 		respond_to do |format|
 			format.json {render :json => Incident.find(id).to_json}
