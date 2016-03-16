@@ -32,8 +32,13 @@ Rails.application.routes.draw do
 
 # CREATE 
   post 'api/createuser', to: 'api#createUser'
+# GET ALL
+  get 'api/getusers', to: 'api#getUsers'
 
+# CATEGEORIES 
 
+# GET ALL
+  get 'api/getcategories', to: 'api#getCategories'
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
