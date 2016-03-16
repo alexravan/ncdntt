@@ -1,98 +1,345 @@
-# Welcome to the ncdent API!
+# Welcome to the ncdntt API!
 The ncdent API provides a way for third party developers to create applications 
 that interact with ncdent platform. Below are descriptions of all our APIs and 
 some code examples to get you started. 
 
-We have kept the ncdent API as simple as possible, providing developers with a 
-small number of APIs to minimize confusion and keep performance high. 
-For instance, if you request a list of incidents our API will simply return all 
-incidents to you. It's up to you to do the filtering.
-
-If you have any questions or feedback about the API please email  our API 
+If you have any questions or feedback about the API please email our API 
 developers at notARealEmail@fakeServer.com, we'd love to hear from you.
 
+## Table of Contents
 
-## GET /api/getincidents
+1) Get Incident
+2) Get Incidents
+3) Create Incident
+4) Update Incident
+5) Close Incident
+6) Remove Incident
 
-Takes:
-- Nothing 
+### Get Incident
 
-Returns:
-- If successful: All incidents in the database in the JSON format 
-- If something went wrong: A error JSON object.
+##### URL
+api/getincident?id=:id
 
-### Example
-```javascript
-some code
+##### Method
+GET
+
+##### URL Params
+__Required:__  
+id=[integer]  
+example: id=12  
+__Optional:__  
+none
+
+##### Success Response
+__Example__  
+__Code:__ 200  
+__Content:__  
+```json
+{
+    "id": 2,
+    "title": "Carm is on fire",
+    "description": "Second floor",
+    "severity": 9,
+    "location": "Carmichael Hall",
+    "date_closed": null,
+    "closing_comment": null,
+    "created_at": "2016-03-16T02:26:02.937Z",
+    "updated_at": "2016-03-16T02:26:02.937Z",
+    "media_file_name": null,
+    "media_content_type": null,
+    "media_file_size": null,
+    "media_updated_at": null,
+    "user_id": 2,
+    "category_id": 15,
+    "is_closed": false
+}
 ```
 
-## POST - /api/createincident
+##### Error Response (NOT FINISHED)
+__Example__  
+__Code:__ 200  
+__Content:__
 
-Takes:
-- usr - The integer user ID of the user who is creating the incident 
-- cat - The integer category of the incident (see here for a list of categories)
-- des - The string description of the incident, e.g. "A comp 20 student forgot about the difference between sever side code and client side code and a TA wondered aloud if they had even been to class once." 
-- sev - The integer severity of the incident (must be between 1 - 10).
-- loc - The string location of the incident - be specific without being verbose, e.g. "Halligan: Ming's usual spot" is ideal - we all know where that is. 
-- img - A link to an image of the incident, e.g. https://pbs.twimg.com/profile_images/476912086355050496/7hUZZ4m2_400x400.jpeg   
+##### Sample Call
+	curl http://localhost:3000/api/getincident?id=1
 
-Returns: 
-- If successful: The details of the successfully created incident in JSON format. 
-- If something went wrong: A error JSON object. 
+### Get Incidents
 
-### Example
-```javascript
-some code
+##### URL
+api/getincidents
+
+##### Method
+GET
+
+##### URL Params
+__Required:__  
+none
+__Optional:__  
+none
+
+##### Success Response
+__Example__  
+__Code:__ 200  
+__Content:__  
+```json
+[{
+    "id": 2,
+    "title": "Carm is on fire",
+    "category": {
+        "id": 15,
+        "created_at": "2016-03-14T16:19:41.799Z",
+        "updated_at": "2016-03-14T16:19:41.799Z",
+        "name": "Fire"
+    },
+    "description": "Second floor",
+    "severity": 9,
+    "location": "Carmichael Hall",
+    "is_closed": false,
+    "date_closed": null,
+    "closing_comment": null,
+    "created_at": "2016-03-16T02:26:02.937Z",
+    "updated_at": "2016-03-16T02:26:02.937Z"
+}, {
+    "id": 3,
+    "title": "Wet floor",
+    "category": {
+        "id": 19,
+        "created_at": "2016-03-14T16:19:41.804Z",
+        "updated_at": "2016-03-14T16:19:41.804Z",
+        "name": "Lab Safety"
+    },
+    "description": "Floors in lab are covered in water",
+    "severity": 5,
+    "location": "Pearson Hall",
+    "is_closed": false,
+    "date_closed": null,
+    "closing_comment": null,
+    "created_at": "2016-03-16T02:27:06.148Z",
+    "updated_at": "2016-03-16T02:27:06.148Z"
+}]
 ```
 
-## POST - /api/updateincident
+##### Error Response (NOT FINISHED)
+__Example__  
+__Code:__ 200  
+__Content:__
 
-Takes:
-- id - The integer ID of the incident to be updated.
-- Any of the parameters that /createincident requires. The user must 
-	submit at least one parameter to be modified. e.g. posting only a new 
-	title would just change the title of the desired incident. Posting a new 
-	title and description would change both the title AND description of the 
-	desired incident etc. 
+##### Sample Call
+	curl http://localhost:3000/api/getincidents
 
-Returns:
-- If successful: The details of the successfully modified incident in JSON format.
-- If something went wrong: A error JSON object.
+### Create Incident
 
-### Example
-```javascript
-some code
+##### URL
+api/createincident
+
+##### Method
+POST
+
+##### URL Params
+__Required:__*  
+title=[string]  
+example: title=Wet floor  
+user_id=[integer]  
+example: user_id=1  
+category_id=[integer]  
+example: category_id=5  
+severity=[integer]
+example: severity=7  
+location=Dowling Hall  
+__Optional:__  
+description=[string]  
+example: description=It was slippery.  
+
+##### Success Response
+__Example__  
+__Code:__ 200  
+__Content:__  
+```json
+{
+    "id": 4,
+    "title": "Wet floor",
+    "description": "It was slippery.",
+    "severity": 7,
+    "location": "Dowling Hall",
+    "date_closed": null,
+    "closing_comment": null,
+    "created_at": "2016-03-16T03:05:14.349Z",
+    "updated_at": "2016-03-16T03:05:14.349Z",
+    "media_file_name": null,
+    "media_content_type": null,
+    "media_file_size": null,
+    "media_updated_at": null,
+    "user_id": 1,
+    "category_id": 12,
+    "is_closed": false
+}
 ```
 
+##### Error Response (NOT FINISHED)
+__Example__  
+__Code:__ 200  
+__Content:__
 
-##  POST - /api/closeincident
+##### Sample Call
+	curl --data "title=Wet floor&user_id=1&category_id=12&severity=7&location=Dowling Hall&description=It was slippery." http://localhost:3000/api/createincident
 
-Takes:
-- id - The integer ID of the incident to be deleted. 
-- cmt - The string comment about how/why the incident was closed, e.g "Ming hacked into the Internet, extinguished the firewalls, ate a TOR onion and saved the Presidents' level 100 prot spec Dwarf warrior from the Russians"
+### Update Incident
 
-Returns:
-- If successful: The details of the successfully deleted incident in JSON format.
-- If something went wrong: A error JSON object.
+##### URL
+api/updateincident
 
-### Example
-```javascript
-some code
+##### Method
+POST
+
+##### URL Params
+__Required:__
+id=[integer] 
+example: id=1
+
+__Optional:__ Any of the optional parameters will overwrite the values of the associated fields for the incident with selected id.  
+title=[string]  
+example: title=Wet floor  
+user_id=[integer]  
+example: user_id=1  
+category_id=[integer]  
+example: category_id=5  
+severity=[integer]
+example: severity=7  
+location=Dowling Hall  
+description=[string]  
+example: description=It was slippery.  
+
+##### Success Response
+__Example__  
+__Code:__ 200  
+__Content:__  
+```json
+{
+    "id": 4,
+    "title": "Wet floor",
+    "description": "It was slippery.",
+    "severity": 7,
+    "location": "Dowling Hall",
+    "date_closed": null,
+    "closing_comment": null,
+    "created_at": "2016-03-16T03:05:14.349Z",
+    "updated_at": "2016-03-16T03:05:14.349Z",
+    "media_file_name": null,
+    "media_content_type": null,
+    "media_file_size": null,
+    "media_updated_at": null,
+    "user_id": 1,
+    "category_id": 12,
+    "is_closed": false
+}
 ```
 
-##  POST - /api/deleteincident
+##### Error Response (NOT FINISHED)
+__Example__  
+__Code:__ 200  
+__Content:__
 
-Takes:
-- id - The integer ID of the incident to be deleted. 
+##### Sample Call
+	curl --data "id=1&title=Wet floor&category_id=12" http://localhost:3000/api/updateincident
 
-Returns:
-- If successful: The details of the successfully deleted incident in JSON format.
-	* If something went wrong: A error JSON object.
+### Close Incident
 
-### Example
-```javascript
-some code
+##### URL
+api/closeincident
+
+##### Method
+POST
+
+##### URL Params
+__Required:__
+id=[integer] 
+example: id=1
+
+__Optional:__    
+closing_comment=[string]
+example: closing_comment=Floor was cleaned by facilities.
+
+##### Success Response
+__Example__  
+__Code:__ 200  
+__Content:__  
+```json
+{
+    "id": 4,
+    "title": "Wet floor",
+    "description": "It was slippery.",
+    "severity": 7,
+    "location": "Dowling Hall",
+    "date_closed": 2016-03-16T03:23:36.5367,
+    "closing_comment": "Floor was cleaned by facilities.",
+    "created_at": "2016-03-16T03:05:14.349Z",
+    "updated_at": "2016-03-16T03:05:14.349Z",
+    "media_file_name": null,
+    "media_content_type": null,
+    "media_file_size": null,
+    "media_updated_at": null,
+    "user_id": 1,
+    "category_id": 12,
+    "is_closed": true
+}
 ```
+
+##### Error Response (NOT FINISHED)
+__Example__  
+__Code:__ 200  
+__Content:__
+
+##### Sample Call
+	curl --data "id=1&closing_comment=Floor was cleaned by facilities." http://localhost:3000/api/closeincident
+
+### Delete Incident
+
+##### URL
+api/closeincident
+
+##### Method
+POST
+
+##### URL Params
+__Required:__* 
+id=[integer] 
+example: id=1
+
+__Optional:__  
+none  
+
+##### Success Response
+__Example__  
+__Code:__ 200  
+__Content:__  
+```json
+{
+    "id": 4,
+    "title": "Wet floor",
+    "description": "It was slippery.",
+    "severity": 7,
+    "location": "Dowling Hall",
+    "date_closed": null,
+    "closing_comment": null,
+    "created_at": "2016-03-16T03:05:14.349Z",
+    "updated_at": "2016-03-16T03:05:14.349Z",
+    "media_file_name": null,
+    "media_content_type": null,
+    "media_file_size": null,
+    "media_updated_at": null,
+    "user_id": 1,
+    "category_id": 12,
+    "is_closed": false
+}
+```
+
+##### Error Response (NOT FINISHED)
+__Example__  
+__Code:__ 200  
+__Content:__
+
+##### Sample Call
+	curl --data "id=1" http://localhost:3000/api/deleteincident
 
 
 
