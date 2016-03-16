@@ -7,6 +7,8 @@ class ApiController < ApplicationController
 # GET /api/getIncidents
 	def getIncidents
 		@incidents = Incident.all
+		size = 'square'
+
 		@ilist = @incidents.map do |i| {
 			:id => i.id,
 			:title => i.title,
@@ -18,7 +20,8 @@ class ApiController < ApplicationController
 			:date_closed => i.date_closed,
 			:closing_comment => i.closing_comment,
 			:created_at => i.created_at,
-			:updated_at => i.updated_at
+			:updated_at => i.updated_at,
+			:media_url => i.media.url(size)
 		}
 		end
 		respond_to do |format|
@@ -32,6 +35,9 @@ class ApiController < ApplicationController
 	def getIncident
 		if (params[:id].present?) && (Incident.exists?(params[:id]))
 			id = params[:id].to_i
+			size = 'square'
+			js = Incident.find(id).to_json
+			js["media_url"] = Incident.find(id).media.url(size).to_s
 			respond_to do |format|
 				format.json {render :json => Incident.find(id).to_json}
 				format.html {render :json => Incident.find(id).to_json}
@@ -212,25 +218,7 @@ class ApiController < ApplicationController
 						format.html {render :json => resp}
 					end	
 				end
-
 	end
-
-# GET gets image URL from specified incident, give incident id, optionally size (thumb, square, or medium)
-	def getImage
-		id = params[:id].to_i
-		if params[:size].present?
-			size = params[:size].to_s
-		else
-			size = 'square'
-		end
-		@incident = Incident.find(id)
-		resp = @incident.media.url(size)
-		respond_to do |format|
-			format.json {render :json => resp.to_json }
-			format.html {render :json => resp.to_json }
-		end	
-	end
-
 
 # GET /api/getusers
 	def getUsers
