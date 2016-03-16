@@ -4,8 +4,6 @@ class ApiController < ApplicationController
 
 # TODO: 5. get incident by severity, etc
 #  		7. validate required params for requests, give error if not present
-# 
-#       9. images via API
 
 # GET /api/getIncidents
 	def getIncidents
@@ -173,7 +171,24 @@ class ApiController < ApplicationController
 
 	end
 
-# GET /api/getIncidents
+# GET gets image URL from specified incident, give incident id, optionally size (thumb, square, or medium)
+	def getImage
+		id = params[:id].to_i
+		if params[:size].present?
+			size = params[:size].to_s
+		else
+			size = 'square'
+		end
+		@incident = Incident.find(id)
+		resp = @incident.media.url(size)
+		respond_to do |format|
+			format.json {render :json => resp.to_json }
+			format.html {render :json => resp.to_json }
+		end	
+	end
+
+
+# GET /api/getusers
 	def getUsers
 		@users = User.all
 		@ilist = @users.map do |i| {

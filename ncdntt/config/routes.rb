@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   post 'api/closeincident', to: 'api#closeIncident'
 # DELETE
   post 'api/deleteincident', to: 'api#deleteIncident'
-
-
+# GET Image
+  get 'api/getimage', to: 'api#getImage'
 # USERS
 
 # CREATE 
@@ -39,6 +39,9 @@ Rails.application.routes.draw do
 
 # GET ALL
   get 'api/getcategories', to: 'api#getCategories'
+
+
+
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
