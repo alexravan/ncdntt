@@ -2,13 +2,7 @@ class ApiController < ApplicationController
 	protect_from_forgery with: :null_session
 	skip_before_filter  :verify_authenticity_token
 
-# TODO: 4. create user
-#  		6. User list?
-#       5. get incident by severity, etc
-#  		7. validate required params for requests, give error if not present
-#       8. categories
-# 
-#       9. images via API
+# TODO: 5. get incident by severity, etc
 
 # GET /api/getIncidents
 	def getIncidents
@@ -192,5 +186,84 @@ class ApiController < ApplicationController
 		end 			
 	end
 
+# POST create user, give first_name, last_name, email, password, password_confirmation // return user json
+	def createUser
+		if ((params[:email].present?) && (params[:first_name].present?) && (params[:last_name].present?) && (params[:password].present?) && (params[:password_confirmation].present?))
+					@new_params = {
+						:email => params[:email].to_s,
+						:first_name => params[:first_name].to_s,
+						:last_name => params[:last_name].to_s,
+						:password => params[:password].to_s,
+						:password_confirmation => params[:password_confirmation].to_s,
+					}
+					
+					User.create(@new_params)
+					#  RETURN ID????
+					respond_to do |format|
+						format.json {render :json => User.last}
+						format.html {render :json => User.last}
+					end	
+				else 
+					resp = {
+						:error => "ill formed parameters"
+					}
+					respond_to do |format|
+						format.json {render :json => resp}
+						format.html {render :json => resp}
+					end	
+				end
 
+	end
+
+# GET gets image URL from specified incident, give incident id, optionally size (thumb, square, or medium)
+	def getImage
+		id = params[:id].to_i
+		if params[:size].present?
+			size = params[:size].to_s
+		else
+			size = 'square'
+		end
+		@incident = Incident.find(id)
+		resp = @incident.media.url(size)
+		respond_to do |format|
+			format.json {render :json => resp.to_json }
+			format.html {render :json => resp.to_json }
+		end	
+	end
+
+
+# GET /api/getusers
+	def getUsers
+		@users = User.all
+		@ilist = @users.map do |i| {
+			:id => i.id,
+			:email => i.email, 
+			:first_name => i.first_name,
+			:last_name => i.last_name,
+			:last_sign_in_at => i.last_sign_in_at,
+			:created_at => i.created_at,
+			:sign_in_count => i.sign_in_count,
+			:current_sign_in_at => i.current_sign_in_at,
+			:updated_at => i.updated_at
+		}
+		end
+		respond_to do |format|
+		format.json { render :json => @ilist.to_json }
+		format.html { render :json => @ilist.to_json }
+		end
+	end
+
+# GET /api/getCategories
+	def getCategories
+		@categories = Category.all
+		@ilist = @categories.map do |i| {
+			:id => i.id,
+			:name => i.name
+		}
+		end
+		respond_to do |format|
+		format.json { render :json => @ilist.to_json }
+		format.html { render :json => @ilist.to_json }
+		end
+	end
 end
