@@ -21,9 +21,9 @@ Rails.application.routes.draw do
 # CREATE
   post 'api/createincident', to: 'api#createIncident'
 # UPDATE
-  post 'api/updateIncident', to: 'api#updateIncident'
+  post 'api/updateincident', to: 'api#updateIncident'
 # CLOSE
-  post 'api/closeIncident', to: 'api#closeIncident'
+  post 'api/closeincident', to: 'api#closeIncident'
 # DELETE
   post 'api/deleteincident', to: 'api#deleteIncident'
 

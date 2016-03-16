@@ -2,11 +2,14 @@ class ApiController < ApplicationController
 	protect_from_forgery with: :null_session
 	skip_before_filter  :verify_authenticity_token
 
-# TODO: 1. create
+# TODO: 1. create incident
 # 		4. create user
 #  		6. User list?
+#       5. get incident by severity, etc
 #  		7. validate required params for requests, give error if not present
 #       8. categories
+# 
+#       9. images via API
 
 # GET /api/getIncidents
 	def getIncidents
@@ -42,27 +45,27 @@ class ApiController < ApplicationController
 	end
 
 # POST create incident // return json incident
-	# def createIncident
-	# 	#@request.env['RAW_POST_DATA'] = @new_project_json.to_json
-	# 	puts "post params are"
-	# 	puts params.inspect
-	# 	puts params[:name]
-
-	# 	if (params[:title] != nil || params[:title]  != ""
-	# 		|| params[:usr] != nil || params[:usr] != ""
-	# 		|| params[:cat] != nil || params[:cat] != ""
-	# 		|| params[:des] != nil || params[:des] != ""
-	# 		|| params[:sev] != nil || params[:sev] != ""
-	# 		|| params[:loc] != nil || params[:loc] != ""
-	# 		|| params[:img] != nil || params[:img] != "")
-
-	# 			puts "All the required parameters are there"
-	# 			Incident.create(params)
-	# 	end
-	# end
-
-# POST delete incident, give id // return nothing
 	def createIncident
+		puts "post params are"
+		puts params.inspect
+		puts params[:name]
+
+		if ((params[:title].present?) && (params[:user_id].present?) && (params[:category_id].present?) && (params[:severity].present?) && (params[:location].present?))
+				Incident.create(params)
+				#  RETURN ID????
+				respond_to do |format|
+					format.json {render :json => params}
+					format.html {render :json => params}
+				end	
+		else 
+			resp = {
+				:error => "ill formed parameters"
+			}
+			respond_to do |format|
+				format.json {render :json => resp}
+				format.html {render :json => resp}
+			end	
+		end
 	end
 
 # POST update incident, give id and fields // return incident
