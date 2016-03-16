@@ -140,4 +140,25 @@ class ApiController < ApplicationController
 		end
 		Incident.destroy(id)
 	end
+
+	def createUser
+		if ((params[:email].present?) && (params[:password].present?) && (params[:password_confirm].present?) && (params[:first_name].present?) && (params[:last_name].present?))
+				User.create(params)
+				#  RETURN ID????
+				respond_to do |format|
+					format.json {render :json => params}
+					format.html {render :json => params}
+				end	
+		else 
+			resp = {
+				:error => "ill formed parameters"
+			}
+			respond_to do |format|
+				format.json {render :json => resp}
+				format.html {render :json => resp}
+			end	
+		end
+
+	end
+
 end
