@@ -2,8 +2,7 @@ class ApiController < ApplicationController
 	protect_from_forgery with: :null_session
 	skip_before_filter  :verify_authenticity_token
 
-# TODO: 1. create incident
-# 		4. create user
+# TODO: 4. create user
 #  		6. User list?
 #       5. get incident by severity, etc
 #  		7. validate required params for requests, give error if not present
@@ -46,17 +45,24 @@ class ApiController < ApplicationController
 
 # POST create incident // return json incident
 	def createIncident
-		puts "post params are"
-		puts params.inspect
-		puts params[:name]
-
 		if ((params[:title].present?) && (params[:user_id].present?) && (params[:category_id].present?) && (params[:severity].present?) && (params[:location].present?))
-				Incident.create(params)
-				#  RETURN ID????
-				respond_to do |format|
-					format.json {render :json => params}
-					format.html {render :json => params}
-				end	
+			@new_params = {
+				:title => params[:title].to_s,
+				:user_id => params[:user_id].to_i,
+				:category_id => params[:category_id].to_i,
+				:severity => params[:severity].to_i,
+				:location => params[:location].to_s,
+				:description => ""
+			}
+			if (params[:description].present?) 
+				@new_params[:description] = params[:description].to_s
+			end 
+			Incident.create(@new_params)
+			#  RETURN ID????
+			respond_to do |format|
+				format.json {render :json => Incident.last}
+				format.html {render :json => Incident.last}
+			end	
 		else 
 			resp = {
 				:error => "ill formed parameters"
