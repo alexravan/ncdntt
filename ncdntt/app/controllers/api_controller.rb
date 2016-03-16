@@ -148,22 +148,30 @@ class ApiController < ApplicationController
 	end
 
 	def createUser
-		if ((params[:email].present?) && (params[:password].present?) && (params[:password_confirm].present?) && (params[:first_name].present?) && (params[:last_name].present?))
-				User.create(params)
-				#  RETURN ID????
-				respond_to do |format|
-					format.json {render :json => params}
-					format.html {render :json => params}
-				end	
-		else 
-			resp = {
-				:error => "ill formed parameters"
-			}
-			respond_to do |format|
-				format.json {render :json => resp}
-				format.html {render :json => resp}
-			end	
-		end
+		if ((params[:email].present?) && (params[:first_name].present?) && (params[:last_name].present?) && (params[:password].present?) && (params[:password_confirmation].present?))
+					@new_params = {
+						:email => params[:email].to_s,
+						:first_name => params[:first_name].to_s,
+						:last_name => params[:last_name].to_s,
+						:password => params[:password].to_s,
+						:password_confirmation => params[:password_confirmation].to_s,
+					}
+					
+					User.create(@new_params)
+					#  RETURN ID????
+					respond_to do |format|
+						format.json {render :json => User.last}
+						format.html {render :json => User.last}
+					end	
+				else 
+					resp = {
+						:error => "ill formed parameters"
+					}
+					respond_to do |format|
+						format.json {render :json => resp}
+						format.html {render :json => resp}
+					end	
+				end
 
 	end
 
