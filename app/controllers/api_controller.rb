@@ -35,9 +35,9 @@ class ApiController < ApplicationController
 	def getIncident
 		if (params[:id].present?) && (Incident.exists?(params[:id]))
 			id = params[:id].to_i
-			size = 'square'
-			js = Incident.find(id).to_json
-			js["media_url"] = Incident.find(id).media.url(size).to_s
+			# size = 'square'
+			# js = Incident.find(id).to_json
+			# js["media_url"] = Incident.find(id).media.url(size).to_s
 			respond_to do |format|
 				format.json {render :json => Incident.find(id).to_json}
 				format.html {render :json => Incident.find(id).to_json}
