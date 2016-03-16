@@ -13,7 +13,10 @@ developers at notARealEmail@fakeServer.com, we'd love to hear from you.
 3) Create Incident
 4) Update Incident
 5) Close Incident
-6) Remove Incident
+6) Delete Incident
+7) Create User
+8) Get Users
+9) Get Categories
 
 ### Get Incident
 
@@ -57,8 +60,11 @@ __Content:__
 
 ##### Error Response (NOT FINISHED)
 __Example__  
-__Code:__ 200  
-__Content:__
+__Code:__ 400  
+__Content:__  
+{
+    message: "incident with that id does not exist",
+}
 
 ##### Sample Call
 	curl http://localhost:3000/api/getincident?id=1
@@ -119,10 +125,8 @@ __Content:__
 }]
 ```
 
-##### Error Response (NOT FINISHED)
-__Example__  
-__Code:__ 200  
-__Content:__
+##### Error Response
+N/A
 
 ##### Sample Call
 	curl http://localhost:3000/api/getincidents
@@ -136,14 +140,14 @@ api/createincident
 POST
 
 ##### URL Params
-__Required:__*  
+__Required:__  
 title=[string]  
 example: title=Wet floor  
 user_id=[integer]  
 example: user_id=1  
-category_id=[integer]  
+category_id=[integer]*  
 example: category_id=5  
-severity=[integer]
+severity=[integer 1-9]
 example: severity=7  
 location=Dowling Hall  
 __Optional:__  
@@ -175,10 +179,13 @@ __Content:__
 }
 ```
 
-##### Error Response (NOT FINISHED)
+##### Error Response
 __Example__  
-__Code:__ 200  
-__Content:__
+__Code:__ 400  
+__Content:__  
+{
+    message: "ill-formed parameters",
+}
 
 ##### Sample Call
 	curl --data "title=Wet floor&user_id=1&category_id=12&severity=7&location=Dowling Hall&description=It was slippery." http://localhost:3000/api/createincident
@@ -201,9 +208,9 @@ title=[string]
 example: title=Wet floor  
 user_id=[integer]  
 example: user_id=1  
-category_id=[integer]  
+category_id=[integer]*  
 example: category_id=5  
-severity=[integer]
+severity=[integer 1-9]
 example: severity=7  
 location=Dowling Hall  
 description=[string]  
@@ -234,10 +241,13 @@ __Content:__
 }
 ```
 
-##### Error Response (NOT FINISHED)
+##### Error Response
 __Example__  
-__Code:__ 200  
-__Content:__
+__Code:__ 400  
+__Content:__  
+{
+    message: "incident with that id does not exist",
+}
 
 ##### Sample Call
 	curl --data "id=1&title=Wet floor&category_id=12" http://localhost:3000/api/updateincident
@@ -284,10 +294,13 @@ __Content:__
 }
 ```
 
-##### Error Response (NOT FINISHED)
+##### Error Response
 __Example__  
-__Code:__ 200  
-__Content:__
+__Code:__ 400  
+__Content:__  
+{
+    message: "incident with that id does not exist",
+}
 
 ##### Sample Call
 	curl --data "id=1&closing_comment=Floor was cleaned by facilities." http://localhost:3000/api/closeincident
@@ -301,7 +314,7 @@ api/closeincident
 POST
 
 ##### URL Params
-__Required:__* 
+__Required:__ 
 id=[integer] 
 example: id=1
 
@@ -333,13 +346,232 @@ __Content:__
 }
 ```
 
-##### Error Response (NOT FINISHED)
+##### Error Response
 __Example__  
-__Code:__ 200  
-__Content:__
+__Code:__ 400  
+__Content:__  
+{
+    message: "incident with that id does not exist",
+}
 
 ##### Sample Call
 	curl --data "id=1" http://localhost:3000/api/deleteincident
 
+### Create User
 
+##### URL
+api/createuser
 
+##### Method
+POST
+
+##### URL Params
+__Required:__
+first_name=[string]  
+example: first_name=John  
+last_name=[string]  
+example: first_name=Smith  
+email=[string]  
+example: email=John.Smith@example.com  
+first_name=[string]  
+example: first_name=John  
+password=[string]  
+example: password=password1  
+password_confirmation=[string]  
+example: password_confirmation=password1  
+
+__Optional:__  
+none  
+
+##### Success Response
+__Example__  
+__Code:__ 200  
+__Content:__  
+```json
+{
+    "id": 3,
+    "email": "John.Smith@example.com",
+    "created_at": "2016-03-16T04:05:36.073Z",
+    "updated_at": "2016-03-16T04:05:36.073Z",
+    "first_name": "John",
+    "last_name": "Smith"
+}
+```
+
+##### Error Response
+__Example__  
+__Code:__ 400  
+__Content:__  
+{
+    message: "ill formed parameters",
+}
+
+##### Sample Call
+	curl --data "first_name=John&last_name=Smith&email=John.Smith@example.com&password=12345678&password_confirmation=12345678" http://localhost:3000/api/createuser
+
+### Get Users
+
+##### URL
+api/getusers
+
+##### Method
+GET
+
+##### URL Params
+__Required:__
+none
+
+__Optional:__  
+none  
+
+##### Success Response
+__Example__  
+__Code:__ 200  
+__Content:__  
+```json
+[{
+    "id": 1,
+    "email": "minerva@gamble.com",
+    "first_name": "MINERVA",
+    "last_name": "GAMBLE",
+    "last_sign_in_at": "2016-03-14T16:20:06.608Z",
+    "created_at": "2016-03-14T16:19:41.909Z",
+    "sign_in_count": 1,
+    "current_sign_in_at": "2016-03-14T16:20:06.608Z",
+    "updated_at": "2016-03-14T16:20:06.609Z"
+}, {
+    "id": 2,
+    "email": "1@1.com",
+    "first_name": "1",
+    "last_name": "1",
+    "last_sign_in_at": "2016-03-16T02:15:30.600Z",
+    "created_at": "2016-03-16T02:15:30.590Z",
+    "sign_in_count": 1,
+    "current_sign_in_at": "2016-03-16T02:15:30.600Z",
+    "updated_at": "2016-03-16T02:15:30.601Z"
+}, {
+    "id": 3,
+    "email": "test@test.com",
+    "first_name": "Ted",
+    "last_name": "Cruz",
+    "last_sign_in_at": null,
+    "created_at": "2016-03-16T04:05:36.073Z",
+    "sign_in_count": 0,
+    "current_sign_in_at": null,
+    "updated_at": "2016-03-16T04:05:36.073Z"
+}]
+```
+
+##### Error Response
+N/A
+
+##### Sample Call
+	curl http://localhost:3000/api/getusers
+
+### Get Categories
+
+##### URL
+api/getcategories
+
+##### Method
+GET
+
+##### URL Params
+__Required:__
+none
+
+__Optional:__  
+none  
+
+##### Success Response
+__Example__  
+__Code:__ 200  
+__Content:__  
+```json
+
+[{
+    "id": 1,
+    "name": "Unknown"
+}, {
+    "id": 2,
+    "name": "Animals and Animal Safety"
+}, {
+    "id": 3,
+    "name": "Asbestos"
+}, {
+    "id": 4,
+    "name": "Biological Agents"
+}, {
+    "id": 5,
+    "name": "Bloodborne Pathogens"
+}, {
+    "id": 6,
+    "name": "Chemical"
+}, {
+    "id": 7,
+    "name": "Confined Space"
+}, {
+    "id": 8,
+    "name": "Cold"
+}, {
+    "id": 9,
+    "name": "Construction"
+}, {
+    "id": 10,
+    "name": "Cranes and Hoists"
+}, {
+    "id": 11,
+    "name": "Driving"
+}, {
+    "id": 12,
+    "name": "Dust"
+}, {
+    "id": 13,
+    "name": "Electrical"
+}, {
+    "id": 14,
+    "name": "Ergonomics"
+}, {
+    "id": 15,
+    "name": "Fire"
+}, {
+    "id": 16,
+    "name": "Hazardous Waste"
+}, {
+    "id": 17,
+    "name": "Heat"
+}, {
+    "id": 18,
+    "name": "Indoor Air Quality"
+}, {
+    "id": 19,
+    "name": "Lab Safety"
+}, {
+    "id": 20,
+    "name": "Lead"
+}, {
+    "id": 21,
+    "name": "Medical"
+}, {
+    "id": 22,
+    "name": "Mold"
+}, {
+    "id": 23,
+    "name": "Oil and Gas"
+}, {
+    "id": 24,
+    "name": "Radiation"
+}, {
+    "id": 25,
+    "name": "Scaffolding"
+}, {
+    "id": 26,
+    "name": "Training"
+}]
+```
+
+##### Error Response
+N/A
+
+##### Sample Call
+	curl http://localhost:3000/api/getcategories
