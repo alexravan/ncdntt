@@ -58,7 +58,7 @@ __Content:__
 }
 ```
 
-##### Error Response (NOT FINISHED)
+##### Error Response
 __Example__  
 __Code:__ 400  
 __Content:__  
