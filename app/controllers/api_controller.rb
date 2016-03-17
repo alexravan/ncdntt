@@ -4,7 +4,9 @@ class ApiController < ApplicationController
 
 # TODO: 5. get incident by severity, etc
 
-# GET /api/getIncidents
+# GET /api/getincidents
+# Requires nothing
+# Returns all incidents (JSON)
 	def getIncidents
 		@incidents = Incident.all
 		size = 'square'
@@ -31,7 +33,8 @@ class ApiController < ApplicationController
 	end
 
 # GET /api/getIncident
-# requires ID, returns single incident
+# Requires incident ID
+# Returns a single incident (JSON)
 	def getIncident
 		if (params[:id].present?) && (Incident.exists?(params[:id]))
 			id = params[:id].to_i
@@ -50,11 +53,13 @@ class ApiController < ApplicationController
 				format.html {render status: 400, json: {
 					    	message: "incident with that id does not exist",
 							}.to_json}
-			end	 
-		end 	
+			end
+		end
 	end
 
-# POST create incident // return json incident
+# POST api/createincident
+# Requires all incident parameters apart from image and description
+# Returns created incident (JSON)
 	def createIncident
 		if ((params[:title].present?) && (params[:user_id].present?) && (params[:category_id].present?) && (params[:severity].present?) && (params[:location].present?) && (User.exists?(params[:user_id])))
 			@new_params = {
@@ -66,15 +71,15 @@ class ApiController < ApplicationController
 				:description => ""
 			}
 			# OPTIONAL
-			if (params[:description].present?) 
+			if (params[:description].present?)
 				@new_params[:description] = params[:description].to_s
-			end 
+			end
 			Incident.create(@new_params)
 			respond_to do |format|
 				format.json {render :json => Incident.last}
 				format.html {render :json => Incident.last}
-			end	
-		else 
+			end
+		else
 			respond_to do |format|
 				format.json {render status: 400, json: {
 					    	message: "ill-formed parameters",
@@ -82,12 +87,13 @@ class ApiController < ApplicationController
 				format.html {render status: 400, json: {
 					    	message: "ill-formed parameters",
 							}.to_json}
-			end	
+			end
 		end
 	end
 
-# POST update incident, give id and fields // return incident
-# need ID param, then any updated fields
+# POST api/updateincident
+# Requires incident ID, then any updated fields
+# Returns updated incident (JSON)
 	 def updateIncident
 	 	if (params[:id].present?) && (Incident.exists?(params[:id]))
 			id = params[:id].to_i
@@ -102,7 +108,7 @@ class ApiController < ApplicationController
 			}
 			if (params[:title].present?)
 					@new_params[:title] = params[:title].to_s
-			end 
+			end
 			if (params[:category_id].present?)
 					@new_params[:category_id] = params[:category_id].to_i
 			end
@@ -112,14 +118,14 @@ class ApiController < ApplicationController
 			if (params[:location].present?)
 					@new_params[:location] = params[:location].to_s
 			end
-			if (params[:description].present?)	
+			if (params[:description].present?)
 					@new_params[:description] = params[:description].to_s
 			end
 			Incident.find(id).update(@new_params)
 			respond_to do |format|
 				format.json {render :json => Incident.find(id).to_json}
 				format.html {render :json => Incident.find(id).to_json}
-			end	
+			end
 		else
 			respond_to do |format|
 				format.json {render status: 400, json: {
@@ -128,11 +134,13 @@ class ApiController < ApplicationController
 				format.html {render status: 400, json: {
 					    	message: "incident with that id does not exist",
 							}.to_json}
-			end	 
-		end 	
+			end
+		end
 	end
 
-# POST close incident, give ID and (optional) closing comment
+# POST api/closeincident,
+# Requires incident ID ID and (optional) closing comment
+# Returns closed incident (JSON)
 # will require authorization
 	def closeIncident
 		if (params[:id].present?) && (Incident.exists?(params[:id]))
@@ -165,11 +173,13 @@ class ApiController < ApplicationController
 				format.html {render status: 400, json: {
 					    	message: "incident with that id does not exist",
 							}.to_json}
-			end	 
-		end 		
+			end
+		end
 	end
 
-# POST delete incident, give id // return nothing
+# POST api/deleteincident,
+# Requires incident ID
+# Returns nothing
 # will require authorization!
 	def deleteIncident
 		if (params[:id].present?) && (Incident.exists?(params[:id]))
@@ -188,11 +198,13 @@ class ApiController < ApplicationController
 				format.html {render status: 400, json: {
 					    	message: "incident with that id does not exist",
 							}.to_json}
-			end	 
-		end 			
+			end
+		end
 	end
 
-# POST create user, give first_name, last_name, email, password, password_confirmation // return user json
+# POST api/createuser
+# Requires first_name, last_name, email, password, password_confirmation
+# Returns user (JSON)
 	def createUser
 		if ((params[:email].present?) && (params[:first_name].present?) && (params[:last_name].present?) && (params[:password].present?) && (params[:password_confirmation].present?))
 					@new_params = {
@@ -202,30 +214,32 @@ class ApiController < ApplicationController
 						:password => params[:password].to_s,
 						:password_confirmation => params[:password_confirmation].to_s,
 					}
-					
+
 					User.create(@new_params)
 					#  RETURN ID????
 					respond_to do |format|
 						format.json {render :json => User.last}
 						format.html {render :json => User.last}
-					end	
-				else 
+					end
+				else
 					resp = {
 						:error => "ill formed parameters"
 					}
 					respond_to do |format|
 						format.json {render :json => resp}
 						format.html {render :json => resp}
-					end	
+					end
 				end
 	end
 
 # GET /api/getusers
+# Requires nothing
+# Returns all users (JSON)
 	def getUsers
 		@users = User.all
 		@ilist = @users.map do |i| {
 			:id => i.id,
-			:email => i.email, 
+			:email => i.email,
 			:first_name => i.first_name,
 			:last_name => i.last_name,
 			:last_sign_in_at => i.last_sign_in_at,
@@ -242,6 +256,8 @@ class ApiController < ApplicationController
 	end
 
 # GET /api/getCategories
+# Requires nothing
+# Returns all possible incident categories (JSON)
 	def getCategories
 		@categories = Category.all
 		@ilist = @categories.map do |i| {
