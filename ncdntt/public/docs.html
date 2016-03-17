@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8">
+                <title>ncdent api docs</title>
+                <link rel="stylesheet" type="text/css" href="githubMarkdown.css">
+        </head>
+<body id="preview">
+        <h1><a id="Welcome_to_the_ncdntt_API_0"></a>Welcome to the ncdntt API!</h1>
+        <p>The ncdent API provides a way for third party developers to create applications
+        that interact with ncdent platform. Below are descriptions of all our APIs and
+        some code examples to get you started.</p>
+        <p>If you have any questions or feedback about the API please email our API
+        developers at <a href="mailto:notARealEmail@fakeServer.com">notARealEmail@fakeServer.com</a>, we’d love to hear from you.</p>
+        <h2><a id="Table_of_Contents_8"></a>Table of Contents</h2>
+        <ol>
+        <li>Get Incident</li>
+        <li>Get Incidents</li>
+        <li>Create Incident</li>
+        <li>Update Incident</li>
+        <li>Close Incident</li>
+        <li>Delete Incident</li>
+        <li>Create User</li>
+        <li>Get Users</li>
+        <li>Get Categories</li>
+        </ol>
+        <h3><a id="Get_Incident_20"></a>Get Incident</h3>
+        <h5><a id="URL_22"></a>URL</h5>
+        <p>api/getincident?id=:id</p>
+        <h5><a id="Method_25"></a>Method</h5>
+        <p>GET</p>
+        <h5><a id="URL_Params_28"></a>URL Params</h5>
+        <p><strong>Required:</strong></p>
+        <ul>
+        <li>id=[integer]</li>
+        <li>example: id=12<br>
+        <strong>Optional:</strong></li>
+        <li>none</li>
+        </ul>
+        <h5><a id="Success_Response_35"></a>Success Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 200<br>
+        <strong>Content:</strong></p>
+        <pre><code class="language-json">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Carm is on fire"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Second floor"</span></span>,
+            "<span class="hljs-attribute">severity</span>": <span class="hljs-value"><span class="hljs-number">9</span></span>,
+            "<span class="hljs-attribute">location</span>": <span class="hljs-value"><span class="hljs-string">"Carmichael Hall"</span></span>,
+            "<span class="hljs-attribute">date_closed</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">closing_comment</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T02:26:02.937Z"</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T02:26:02.937Z"</span></span>,
+            "<span class="hljs-attribute">media_file_name</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_content_type</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_file_size</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_updated_at</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+            "<span class="hljs-attribute">category_id</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+            "<span class="hljs-attribute">is_closed</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+        </span>}
+        </code></pre>
+        <h5><a id="Error_Response_NOT_FINISHED_60"></a>Error Response (NOT FINISHED)</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 400<br>
+        <strong>Content:</strong><br>
+        {
+        message: “incident with that id does not exist”,
+        }</p>
+        <h5><a id="Sample_Call_68"></a>Sample Call</h5>
+        <pre><code>curl http://localhost:3000/api/getincident?id=1
+        </code></pre>
+        <h3><a id="Get_Incidents_71"></a>Get Incidents</h3>
+        <h5><a id="URL_73"></a>URL</h5>
+        <p>api/getincidents</p>
+        <h5><a id="Method_76"></a>Method</h5>
+        <p>GET</p>
+        <h5><a id="URL_Params_79"></a>URL Params</h5>
+        <p><strong>Required:</strong><br>
+        none
+        <strong>Optional:</strong><br>
+        none</p>
+        <h5><a id="Success_Response_85"></a>Success Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 200<br>
+        <strong>Content:</strong></p>
+        <pre><code class="language-json">[{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Carm is on fire"</span></span>,
+            "<span class="hljs-attribute">category</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-14T16:19:41.799Z"</span></span>,
+                "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-14T16:19:41.799Z"</span></span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Fire"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Second floor"</span></span>,
+            "<span class="hljs-attribute">severity</span>": <span class="hljs-value"><span class="hljs-number">9</span></span>,
+            "<span class="hljs-attribute">location</span>": <span class="hljs-value"><span class="hljs-string">"Carmichael Hall"</span></span>,
+            "<span class="hljs-attribute">is_closed</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">date_closed</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">closing_comment</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T02:26:02.937Z"</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T02:26:02.937Z"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Wet floor"</span></span>,
+            "<span class="hljs-attribute">category</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">19</span></span>,
+                "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-14T16:19:41.804Z"</span></span>,
+                "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-14T16:19:41.804Z"</span></span>,
+                "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Lab Safety"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Floors in lab are covered in water"</span></span>,
+            "<span class="hljs-attribute">severity</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+            "<span class="hljs-attribute">location</span>": <span class="hljs-value"><span class="hljs-string">"Pearson Hall"</span></span>,
+            "<span class="hljs-attribute">is_closed</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">date_closed</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">closing_comment</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T02:27:06.148Z"</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T02:27:06.148Z"</span>
+        </span>}]
+        </code></pre>
+        <h5><a id="Error_Response_127"></a>Error Response</h5>
+        <p>N/A</p>
+        <h5><a id="Sample_Call_130"></a>Sample Call</h5>
+        <pre><code>curl http://localhost:3000/api/getincidents
+        </code></pre>
+        <h3><a id="Create_Incident_133"></a>Create Incident</h3>
+        <h5><a id="URL_135"></a>URL</h5>
+        <p>api/createincident</p>
+        <h5><a id="Method_138"></a>Method</h5>
+        <p>POST</p>
+        <h5><a id="URL_Params_141"></a>URL Params</h5>
+        <p><strong>Required:</strong></p>
+        <ul>
+        <li>title=[string]</li>
+        <li>example: title=Wet floor</li>
+        <li>user_id=[integer]</li>
+        <li>example: user_id=1</li>
+        <li>category_id=[integer]*</li>
+        <li>example: category_id=5</li>
+        <li>severity=[integer 1-9]</li>
+        <li>example: severity=7</li>
+        <li>location=Dowling Hall<br>
+        <strong>Optional:</strong></li>
+        <li>description=[string]</li>
+        <li>example: description=It was slippery.</li>
+        </ul>
+        <h5><a id="Success_Response_156"></a>Success Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 200<br>
+        <strong>Content:</strong></p>
+        <pre><code class="language-json">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Wet floor"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"It was slippery."</span></span>,
+            "<span class="hljs-attribute">severity</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
+            "<span class="hljs-attribute">location</span>": <span class="hljs-value"><span class="hljs-string">"Dowling Hall"</span></span>,
+            "<span class="hljs-attribute">date_closed</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">closing_comment</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T03:05:14.349Z"</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T03:05:14.349Z"</span></span>,
+            "<span class="hljs-attribute">media_file_name</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_content_type</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_file_size</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_updated_at</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">category_id</span>": <span class="hljs-value"><span class="hljs-number">12</span></span>,
+            "<span class="hljs-attribute">is_closed</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+        </span>}
+        </code></pre>
+        <h5><a id="Error_Response_181"></a>Error Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 400<br>
+        <strong>Content:</strong><br>
+        {
+        message: “ill-formed parameters”,
+        }</p>
+        <h5><a id="Sample_Call_189"></a>Sample Call</h5>
+        <pre><code>curl --data &quot;title=Wet floor&amp;user_id=1&amp;category_id=12&amp;severity=7&amp;location=Dowling Hall&amp;description=It was slippery.&quot; http://localhost:3000/api/createincident
+        </code></pre>
+        <h3><a id="Update_Incident_192"></a>Update Incident</h3>
+        <h5><a id="URL_194"></a>URL</h5>
+        <p>api/updateincident</p>
+        <h5><a id="Method_197"></a>Method</h5>
+        <p>POST</p>
+        <h5><a id="URL_Params_200"></a>URL Params</h5>
+        <p><strong>Required:</strong>
+        id=[integer]
+        example: id=1</p>
+        <p><strong>Optional:</strong> Any of the optional parameters will overwrite the values of the associated fields for the incident with selected - id.</p>
+        <ul>
+        <li>title=[string]</li>
+        <li>example: title=Wet floor</li>
+        <li>user_id=[integer]</li>
+        <li>example: user_id=1</li>
+        <li>category_id=[integer]*</li>
+        <li>example: category_id=5</li>
+        <li>severity=[integer 1-9]</li>
+        <li>example: severity=7</li>
+        <li>location=Dowling Hall</li>
+        <li>description=[string]</li>
+        <li>example: description=It was slippery.</li>
+        </ul>
+        <h5><a id="Success_Response_218"></a>Success Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 200<br>
+        <strong>Content:</strong></p>
+        <pre><code class="language-json">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Wet floor"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"It was slippery."</span></span>,
+            "<span class="hljs-attribute">severity</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
+            "<span class="hljs-attribute">location</span>": <span class="hljs-value"><span class="hljs-string">"Dowling Hall"</span></span>,
+            "<span class="hljs-attribute">date_closed</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">closing_comment</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T03:05:14.349Z"</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T03:05:14.349Z"</span></span>,
+            "<span class="hljs-attribute">media_file_name</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_content_type</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_file_size</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_updated_at</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">category_id</span>": <span class="hljs-value"><span class="hljs-number">12</span></span>,
+            "<span class="hljs-attribute">is_closed</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+        </span>}
+        </code></pre>
+        <h5><a id="Error_Response_243"></a>Error Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 400<br>
+        <strong>Content:</strong><br>
+        {
+        message: “incident with that id does not exist”,
+        }</p>
+        <h5><a id="Sample_Call_251"></a>Sample Call</h5>
+        <pre><code>curl --data &quot;id=1&amp;title=Wet floor&amp;category_id=12&quot; http://localhost:3000/api/updateincident
+        </code></pre>
+        <h3><a id="Close_Incident_254"></a>Close Incident</h3>
+        <h5><a id="URL_256"></a>URL</h5>
+        <p>api/closeincident</p>
+        <h5><a id="Method_259"></a>Method</h5>
+        <p>POST</p>
+        <h5><a id="URL_Params_262"></a>URL Params</h5>
+        <p><strong>Required:</strong></p>
+        <ul>
+        <li>id=[integer]</li>
+        <li>example: id=1</li>
+        </ul>
+        <p><strong>Optional:</strong></p>
+        <ul>
+        <li>closing_comment=[string]</li>
+        <li>example: closing_comment=Floor was cleaned by facilities.</li>
+        </ul>
+        <h5><a id="Success_Response_271"></a>Success Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 200<br>
+        <strong>Content:</strong></p>
+        <pre><code class="language-json">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Wet floor"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"It was slippery."</span></span>,
+            "<span class="hljs-attribute">severity</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
+            "<span class="hljs-attribute">location</span>": <span class="hljs-value"><span class="hljs-string">"Dowling Hall"</span></span>,
+            "<span class="hljs-attribute">date_closed</span>": <span class="hljs-value"><span class="hljs-number">2016</span>-<span class="hljs-number">03</span>-<span class="hljs-number">16</span>T03:<span class="hljs-number">23</span>:<span class="hljs-number">36.5367</span></span>,
+            "<span class="hljs-attribute">closing_comment</span>": <span class="hljs-value"><span class="hljs-string">"Floor was cleaned by facilities."</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T03:05:14.349Z"</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T03:05:14.349Z"</span></span>,
+            "<span class="hljs-attribute">media_file_name</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_content_type</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_file_size</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_updated_at</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">category_id</span>": <span class="hljs-value"><span class="hljs-number">12</span></span>,
+            "<span class="hljs-attribute">is_closed</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+        </span>}
+        </code></pre>
+        <h5><a id="Error_Response_296"></a>Error Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 400<br>
+        <strong>Content:</strong><br>
+        {
+        message: “incident with that id does not exist”,
+        }</p>
+        <h5><a id="Sample_Call_304"></a>Sample Call</h5>
+        <pre><code>curl --data &quot;id=1&amp;closing_comment=Floor was cleaned by facilities.&quot; http://localhost:3000/api/closeincident
+        </code></pre>
+        <h3><a id="Delete_Incident_307"></a>Delete Incident</h3>
+        <h5><a id="URL_309"></a>URL</h5>
+        <p>api/closeincident</p>
+        <h5><a id="Method_312"></a>Method</h5>
+        <p>POST</p>
+        <h5><a id="URL_Params_315"></a>URL Params</h5>
+        <p><strong>Required:</strong></p>
+        <ul>
+        <li>id=[integer]</li>
+        <li>example: id=1</li>
+        </ul>
+        <p><strong>Optional:</strong></p>
+        <ul>
+        <li>none</li>
+        </ul>
+        <h5><a id="Success_Response_323"></a>Success Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 200<br>
+        <strong>Content:</strong></p>
+        <pre><code class="language-json">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+            "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Wet floor"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"It was slippery."</span></span>,
+            "<span class="hljs-attribute">severity</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
+            "<span class="hljs-attribute">location</span>": <span class="hljs-value"><span class="hljs-string">"Dowling Hall"</span></span>,
+            "<span class="hljs-attribute">date_closed</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">closing_comment</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T03:05:14.349Z"</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T03:05:14.349Z"</span></span>,
+            "<span class="hljs-attribute">media_file_name</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_content_type</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_file_size</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">media_updated_at</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">category_id</span>": <span class="hljs-value"><span class="hljs-number">12</span></span>,
+            "<span class="hljs-attribute">is_closed</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+        </span>}
+        </code></pre>
+        <h5><a id="Error_Response_348"></a>Error Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 400<br>
+        <strong>Content:</strong><br>
+        {
+        message: “incident with that id does not exist”,
+        }</p>
+        <h5><a id="Sample_Call_356"></a>Sample Call</h5>
+        <pre><code>curl --data &quot;id=1&quot; http://localhost:3000/api/deleteincident
+        </code></pre>
+        <h3><a id="Create_User_359"></a>Create User</h3>
+        <h5><a id="URL_361"></a>URL</h5>
+        <p>api/createuser</p>
+        <h5><a id="Method_364"></a>Method</h5>
+        <p>POST</p>
+        <h5><a id="URL_Params_367"></a>URL Params</h5>
+        <p><strong>Required:</strong></p>
+        <ul>
+        <li>first_name=[string]</li>
+        <li>example: first_name=John</li>
+        <li>last_name=[string]</li>
+        <li>example: first_name=Smith</li>
+        <li>email=[string]</li>
+        <li>example: <a href="mailto:email=John.Smith@example.com">email=John.Smith@example.com</a></li>
+        <li>first_name=[string]</li>
+        <li>example: first_name=John</li>
+        <li>password=[string]</li>
+        <li>example: password=password1</li>
+        <li>password_confirmation=[string]</li>
+        <li>example: password_confirmation=password1</li>
+        </ul>
+        <p><strong>Optional:</strong></p>
+        <ul>
+        <li>none</li>
+        </ul>
+        <h5><a id="Success_Response_385"></a>Success Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 200<br>
+        <strong>Content:</strong></p>
+        <pre><code class="language-json">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"John.Smith@example.com"</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T04:05:36.073Z"</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T04:05:36.073Z"</span></span>,
+            "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"John"</span></span>,
+            "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Smith"</span>
+        </span>}
+        </code></pre>
+        <h5><a id="Error_Response_400"></a>Error Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 400<br>
+        <strong>Content:</strong><br>
+        {
+        message: “ill formed parameters”,
+        }</p>
+        <h5><a id="Sample_Call_408"></a>Sample Call</h5>
+        <pre><code>curl --data &quot;first_name=John&amp;last_name=Smith&amp;email=John.Smith@example.com&amp;password=12345678&amp;password_confirmation=12345678&quot; http://localhost:3000/api/createuser
+        </code></pre>
+        <h3><a id="Get_Users_411"></a>Get Users</h3>
+        <h5><a id="URL_413"></a>URL</h5>
+        <p>api/getusers</p>
+        <h5><a id="Method_416"></a>Method</h5>
+        <p>GET</p>
+        <h5><a id="URL_Params_419"></a>URL Params</h5>
+        <p><strong>Required:</strong></p>
+        <ul>
+        <li>none</li>
+        </ul>
+        <p><strong>Optional:</strong></p>
+        <ul>
+        <li>none</li>
+        </ul>
+        <h5><a id="Success_Response_426"></a>Success Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 200<br>
+        <strong>Content:</strong></p>
+        <pre><code class="language-json">[{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"minerva@gamble.com"</span></span>,
+            "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"MINERVA"</span></span>,
+            "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"GAMBLE"</span></span>,
+            "<span class="hljs-attribute">last_sign_in_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-14T16:20:06.608Z"</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-14T16:19:41.909Z"</span></span>,
+            "<span class="hljs-attribute">sign_in_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">current_sign_in_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-14T16:20:06.608Z"</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-14T16:20:06.609Z"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+            "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"1@1.com"</span></span>,
+            "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+            "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+            "<span class="hljs-attribute">last_sign_in_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T02:15:30.600Z"</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T02:15:30.590Z"</span></span>,
+            "<span class="hljs-attribute">sign_in_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">current_sign_in_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T02:15:30.600Z"</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T02:15:30.601Z"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"test@test.com"</span></span>,
+            "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Ted"</span></span>,
+            "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Cruz"</span></span>,
+            "<span class="hljs-attribute">last_sign_in_at</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T04:05:36.073Z"</span></span>,
+            "<span class="hljs-attribute">sign_in_count</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+            "<span class="hljs-attribute">current_sign_in_at</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+            "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2016-03-16T04:05:36.073Z"</span>
+        </span>}]
+        </code></pre>
+        <h5><a id="Error_Response_464"></a>Error Response</h5>
+        <p>N/A</p>
+        <h5><a id="Sample_Call_467"></a>Sample Call</h5>
+        <pre><code>curl http://localhost:3000/api/getusers
+        </code></pre>
+        <h3><a id="Get_Categories_470"></a>Get Categories</h3>
+        <h5><a id="URL_472"></a>URL</h5>
+        <p>api/getcategories</p>
+        <h5><a id="Method_475"></a>Method</h5>
+        <p>GET</p>
+        <h5><a id="URL_Params_478"></a>URL Params</h5>
+        <p><strong>Required:</strong></p>
+        <ul>
+        <li>none</li>
+        </ul>
+        <p><strong>Optional:</strong></p>
+        <ul>
+        <li>none</li>
+        </ul>
+        <h5><a id="Success_Response_485"></a>Success Response</h5>
+        <p><strong>Example</strong><br>
+        <strong>Code:</strong> 200<br>
+        <strong>Content:</strong></p>
+        <pre><code class="language-json">
+        [{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Unknown"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Animals and Animal Safety"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Asbestos"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Biological Agents"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Bloodborne Pathogens"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Chemical"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Confined Space"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">8</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Cold"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">9</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Construction"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">10</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Cranes and Hoists"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">11</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Driving"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">12</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Dust"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">13</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Electrical"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">14</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Ergonomics"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Fire"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">16</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Hazardous Waste"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">17</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Heat"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">18</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Indoor Air Quality"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">19</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Lab Safety"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">20</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Lead"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">21</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Medical"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">22</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Mold"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">23</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Oil and Gas"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">24</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Radiation"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">25</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Scaffolding"</span>
+        </span>}, {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">26</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Training"</span>
+        </span>}]
+        </code></pre>
+        <h5><a id="Error_Response_572"></a>Error Response</h5>
+        <p>N/A</p>
+        <h5><a id="Sample_Call_575"></a>Sample Call</h5>
+        <pre><code>curl http://localhost:3000/api/getcategories
+        </code></pre>
+
+</body></html>

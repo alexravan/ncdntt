@@ -65,15 +65,15 @@
                   New Incident
                 <% end %>
             </li>
-             <% if user_signed_in? %> 
-            <li>
-                <a href="/show_mine"><span class="glyphicon glyphicon-book"></span>  My Tickets</a>
-            </li>
             <li>
                 <a href="/apidocs"><span class="glyphicon glyphicon-list-alt"></span>  API Documentation</a>
             </li>
+             <% if user_signed_in? %>
+            <li>
+                <a href="/show_mine"><span class="glyphicon glyphicon-book"></span>  My Tickets</a>
+            </li>
             <% end %>
-            
+
            <!--  <li>
                 <a href="#">About</a>
             </li>
@@ -87,7 +87,7 @@
       <!-- </div> -->
       <div id='user'>
         <div id='userinfo' >
-         <% if user_signed_in? %> 
+         <% if user_signed_in? %>
         <div class='round'>
           <img src="https://pbs.twimg.com/profile_images/527918621230903296/WAB5n8l8_400x400.jpeg">
         </div>
@@ -95,7 +95,7 @@
                     <p><%= link_to current_user.first_name + " " + current_user.last_name , edit_user_registration_path %></p>
                     <p><%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
                 <!-- </li> -->
-            <% else %> 
+            <% else %>
               <!-- <li> -->
 
                   <p> <%= link_to "Sign Up", new_user_registration_path %> </p>
@@ -105,7 +105,7 @@
               <!-- </li> -->
             <% end %>
         </div>
-      </div> 
+      </div>
 
     </div>
     <!-- /#sidebar-wrapper -->
