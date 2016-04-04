@@ -1,6 +1,11 @@
 class ApiController < ApplicationController
 	protect_from_forgery with: :null_session
 	skip_before_filter  :verify_authenticity_token
+	before_filter :authenticate
+  	caches_action :getIncidents
+	caches_action :getincident
+  	caches_action :show, :layout => false
+
 
 # TODO: 5. get incident by severity, etc
 
@@ -61,6 +66,8 @@ class ApiController < ApplicationController
 # Requires all incident parameters apart from image and description
 # Returns created incident (JSON)
 	def createIncident
+		expire_action :action => : getIncident
+		expire_action :action => : getIncidents
 		if ((params[:title].present?) && (params[:user_id].present?) && (params[:category_id].present?) && (params[:severity].present?) && (params[:location].present?) && (User.exists?(params[:user_id])))
 			@new_params = {
 				:title => params[:title].to_s,
@@ -95,6 +102,8 @@ class ApiController < ApplicationController
 # Requires incident ID, then any updated fields
 # Returns updated incident (JSON)
 	 def updateIncident
+		expire_action :action => : getIncident
+ 		expire_action :action => : getIncidents
 	 	if (params[:id].present?) && (Incident.exists?(params[:id]))
 			id = params[:id].to_i
 			@inci = Incident.find(id)
@@ -143,6 +152,8 @@ class ApiController < ApplicationController
 # Returns closed incident (JSON)
 # will require authorization
 	def closeIncident
+		expire_action :action => : getIncident
+		expire_action :action => : getIncidents
 		if (params[:id].present?) && (Incident.exists?(params[:id]))
 			id = params[:id].to_i
 			@inc = Incident.find(id)
@@ -182,6 +193,8 @@ class ApiController < ApplicationController
 # Returns nothing
 # will require authorization!
 	def deleteIncident
+		expire_action :action => : getIncident
+		expire_action :action => : getIncidents
 		if (params[:id].present?) && (Incident.exists?(params[:id]))
 			id = params[:id].to_i
 			Incident.find(id)
