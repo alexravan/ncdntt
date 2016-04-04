@@ -48,6 +48,8 @@ gem 'bootstrap-generators', '~> 3.3.4'
 # memory caching
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
+gem 'dalli'
+gem 'memcachier'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
