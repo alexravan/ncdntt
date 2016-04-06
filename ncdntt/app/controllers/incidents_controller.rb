@@ -36,7 +36,7 @@ class IncidentsController < ApplicationController
   # POST /incidents
   # POST /incidents.json
   def create
-#     expire_action :action => : incidents
+     expire_action :action =>  index
      # puts incident_params
      @incident = current_user.incidents.build(incident_params)
     respond_to do |format|
