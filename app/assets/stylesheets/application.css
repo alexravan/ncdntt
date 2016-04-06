@@ -455,3 +455,7 @@ img.circle {
 a:hover {
     text-decoration: none;
 }
+
+.filter > ul {
+    height: 20%;
+}

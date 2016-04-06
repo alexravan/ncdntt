@@ -15,3 +15,18 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+$(function () {
+	$('.dropdown-menu').on('click', '#sev', function () {
+		localStorage.setItem('filter', 'severity');
+		console.log("loading script");
+		$.getScript(this.href);
+		return false;
+	});
+	$('.dropdown-menu').on('click', '#date', function () {
+		localStorage.setItem('filter', 'created_at');
+		console.log("loading script");
+		$.getScript(this.href);
+		return false;
+	});
+
+})
