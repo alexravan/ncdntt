@@ -255,6 +255,29 @@ class ApiController < ApplicationController
 		end
 	end
 
+# GET /api/getusers
+# Requires nothing
+# Returns all users (JSON)
+	def numIncidents
+		@incidents = Incident.all
+		@ilist = @incidents.length
+		# @ilist = @users.map do |i| {
+		# 	:id => i.id,
+		# 	:email => i.email,
+		# 	:first_name => i.first_name,
+		# 	:last_name => i.last_name,
+		# 	:last_sign_in_at => i.last_sign_in_at,
+		# 	:created_at => i.created_at,
+		# 	:sign_in_count => i.sign_in_count,
+		# 	:current_sign_in_at => i.current_sign_in_at,
+		# 	:updated_at => i.updated_at
+		# }
+		respond_to do |format|
+		format.json { render :json => @ilist.to_json }
+		format.html { render :json => @ilist.to_json }
+		end
+	end
+
 # GET /api/getCategories
 # Requires nothing
 # Returns all possible incident categories (JSON)
