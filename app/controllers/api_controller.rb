@@ -1,6 +1,11 @@
 class ApiController < ApplicationController
 	protect_from_forgery with: :null_session
 	skip_before_filter  :verify_authenticity_token
+	before_filter :authenticate
+  	caches_action :getIncidents
+	caches_action :getincident
+  	caches_action :show, :layout => false
+
 
 # TODO: 5. get incident by severity, etc
 
@@ -182,6 +187,7 @@ class ApiController < ApplicationController
 # Returns nothing
 # will require authorization!
 	def deleteIncident
+		expire_action :action => : incidents
 		if (params[:id].present?) && (Incident.exists?(params[:id]))
 			id = params[:id].to_i
 			Incident.find(id)
