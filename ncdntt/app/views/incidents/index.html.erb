@@ -19,3 +19,53 @@
 <br>
 <br>
 
+<script>
+    // Original JavaScript code by Chirp Internet: www.chirp.com.au
+  // Please acknowledge use of this code by including this header.
+  var inc_num;
+  function getCookie(name)
+  {
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
+  }
+  function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+  function initialize_incidents(){
+    inc_num = getCookie("num_incidents");
+    if (inc_num == null) {
+      inc_num = 0;
+    };
+    console.log("original: " + inc_num + "\n");
+  };
+  
+  $(initialize_incidents());
+
+  window.setInterval(function(){
+    console.log("checking for updates");
+    $.ajax({
+      dataType: "json",
+      url: "/api/numincidents",
+    }).done(function(data) {
+      new_num = jQuery.parseJSON(data);
+      console.log("new_num: " + new_num + "\n");
+      if (new_num != inc_num) {
+        inc_num = new_num;
+        createCookie("num_incidents", inc_num, 100);
+        document.location.reload(true);
+      };
+    });
+  }, 5000);
+
+</script>
+
+
+
