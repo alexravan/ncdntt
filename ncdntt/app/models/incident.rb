@@ -17,4 +17,9 @@ class Incident < ActiveRecord::Base
 	}
 	# Validate the attached image is image/jpg, image/png, etc
 	validates_attachment_content_type :media, :content_type => /\Aimage\/.*\Z/
+
+
+	def self.all_cached
+  		Rails.cache.fetch('Incident.all') { all }
+	end
 end
