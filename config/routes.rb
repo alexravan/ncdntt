@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 # GET ALL
   get 'api/getusers', to: 'api#getUsers'
 
+# GET NUM INCIDENTS
+  get 'api/numincidents', to: 'api#numIncidents'
 # CATEGEORIES 
 
 # GET ALL
