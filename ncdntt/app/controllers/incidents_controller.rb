@@ -2,9 +2,9 @@ class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   before_filter :authenticate_user!
+  # before_action :require_permission, only: :edit
   caches_action :index
   caches_action :show, :layout => false
-  # before_action :require_permission, only: :edit
 
   # GET /incidents
   # GET /incidents.json
@@ -22,14 +22,15 @@ class IncidentsController < ApplicationController
 
   # GET /incidents/new
   def new
+         expire_action :action =>  index
           @incident = current_user.incidents.build
           expires_in 1.year, :public => true
   end
 
   # GET /incidents/1/edit
   def edit
-          expire_action :action =>  index
-          expires_in 1.year, :public => true
+         expire_action :action =>  index
+         expires_in 1.year, :public => true
   end
 
   # POST /incidents
@@ -55,7 +56,6 @@ class IncidentsController < ApplicationController
   # PATCH/PUT /incidents/1.json
   def update
     expire_action :action =>  index
-    expire_action :action =>  index
     respond_to do |format|
       if @incident.update(incident_params)
         format.html { redirect_to @incident, notice: 'Incident was successfully updated.' }
@@ -75,8 +75,8 @@ class IncidentsController < ApplicationController
   end
 
   def update_close
-        expire_action :action =>  index
-        @incident = Incident.find(params[:id])
+    expire_action :action =>  index
+    @incident = Incident.find(params[:id])
     respond_to do |format|
       if @incident.update(incident_params)
         format.html { redirect_to @incident, notice: 'Incident was successfully closed.' }

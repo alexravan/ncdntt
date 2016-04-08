@@ -151,4 +151,13 @@
     });
     </script>
 
+    <script>
+      $(document).ready(function() {
+        <% if content_for? :js %>
+            <%= yield :js %>
+          <% end %>
+          });
+    </script>
+
+
 </html>
