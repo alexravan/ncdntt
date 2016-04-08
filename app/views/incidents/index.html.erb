@@ -2,7 +2,7 @@
 <div class="row" id="filter">
   <!-- SEARCH FILTERS -->
       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter By<span class="caret"></span></button>
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort By<span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li><a id="sev">Severity</a></li>
           <li><a id="date">Date</a></li>
@@ -12,15 +12,29 @@
 
 <div class='col-xs-12 col-sm-8 col-md-6 col-lg-4' id="incidents">
     <!-- ACTUAL INCIDENTS -->
-    
-    <script>$.getScript(this.href);</script>
-
 </div>
 <br>
 <br>
 
 <script>
-    // Original JavaScript code by Chirp Internet: www.chirp.com.au
+function load_incidents() {
+    console.log("rendering");
+    var partial = localStorage.getItem("filter");
+    console.log(partial);
+    console.log(partial === "created_at");
+    if (partial === "created_at") {
+      $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
+    }
+    else if (partial === "severity") {
+      $("#incidents").html('<%= escape_javascript(render ("severity")) %>');
+    }
+    // // defaults to created_at
+    else {
+      $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
+    }
+}
+
+  // Original JavaScript code by Chirp Internet: www.chirp.com.au
   // Please acknowledge use of this code by including this header.
   var inc_num;
   function getCookie(name)
@@ -59,13 +73,26 @@
       console.log("new_num: " + new_num + "\n");
       if (new_num != inc_num) {
         inc_num = new_num;
+        
         createCookie("num_incidents", inc_num, 100);
-        $.getScript(this.href);
-      };
+        console.log("calling load incidents")
+        load_incidents();
+        // var partial = localStorage.getItem("filter");
+        // if (partial === "created_at") {
+        //   $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
+        // }
+        // else if (partial === "severity") {
+        //   $("#incidents").html('<%= escape_javascript(render ("severity")) %>');
+        // }
+        // // // defaults to created_at
+        // else {
+        //   $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
+        // }
+      }
     });
   }, 5000);
 
+  $(document).ready(load_incidents());
+
 </script>
-
-
 
