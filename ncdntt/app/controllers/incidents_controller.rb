@@ -56,6 +56,7 @@ class IncidentsController < ApplicationController
   # PATCH/PUT /incidents/1.json
   def update
  #   expire_action :action => : index
+    expire_action :action =>  index
     respond_to do |format|
       if @incident.update(incident_params)
         format.html { redirect_to @incident, notice: 'Incident was successfully updated.' }
@@ -70,6 +71,7 @@ class IncidentsController < ApplicationController
 
 # GET /incidents/1/edit
   def close
+    expire_action :action =>  index
     @incident = Incident.find(params[:id])
   end
 
@@ -100,6 +102,7 @@ class IncidentsController < ApplicationController
   # DELETE /incidents/1
   # DELETE /incidents/1.json
   def destroy
+    expire_action :action =>  index
     @incident.destroy
     respond_to do |format|
       format.html { redirect_to incidents_url, notice: 'Incident was successfully destroyed.' }
