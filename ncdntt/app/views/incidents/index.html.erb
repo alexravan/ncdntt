@@ -18,6 +18,22 @@
 
 
 <% content_for :js do %>
+function load_incidents() {
+    <!-- console.log("rendering"); -->
+    var partial = localStorage.getItem("filter");
+    <!-- console.log(partial); -->
+    <!-- console.log(partial === "created_at"); -->
+    if (partial === "created_at") {
+      $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
+    }
+    else if (partial === "severity") {
+      $("#incidents").html('<%= escape_javascript(render ("severity")) %>');
+    }
+    // // defaults to created_at
+    else {
+      $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
+    }
+}
 
   // Original JavaScript code by Chirp Internet: www.chirp.com.au
   // Please acknowledge use of this code by including this header.
