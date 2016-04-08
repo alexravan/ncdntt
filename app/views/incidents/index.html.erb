@@ -16,12 +16,13 @@
 <br>
 <br>
 
-<script>
+
+<% content_for :js do %>
 function load_incidents() {
-    console.log("rendering");
+    <!-- console.log("rendering"); -->
     var partial = localStorage.getItem("filter");
-    console.log(partial);
-    console.log(partial === "created_at");
+    <!-- console.log(partial); -->
+    <!-- console.log(partial === "created_at"); -->
     if (partial === "created_at") {
       $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
     }
@@ -75,24 +76,32 @@ function load_incidents() {
         inc_num = new_num;
         
         createCookie("num_incidents", inc_num, 100);
-        console.log("calling load incidents")
-        load_incidents();
-        // var partial = localStorage.getItem("filter");
-        // if (partial === "created_at") {
-        //   $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
-        // }
-        // else if (partial === "severity") {
-        //   $("#incidents").html('<%= escape_javascript(render ("severity")) %>');
-        // }
-        // // // defaults to created_at
-        // else {
-        //   $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
-        // }
+        <!-- console.log("calling load incidents"); -->
+        window.location.reload();
+
+ 
       }
     });
   }, 5000);
+  
+function one () {
+  $('.dropdown-menu').on('click', '#sev', function () {
+    localStorage.setItem('filter', 'severity');
+    load_incidents();
+    return false;
+  });
+  $('.dropdown-menu').on('click', '#date', function () {
+    localStorage.setItem('filter', 'created_at');
+    load_incidents();
+    return false;
+  });
+
+}
+
+
 
   $(document).ready(load_incidents());
+  $(document).ready(one());
 
-</script>
+<% end %>
 
