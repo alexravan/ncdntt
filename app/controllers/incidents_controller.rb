@@ -22,14 +22,13 @@ class IncidentsController < ApplicationController
 
   # GET /incidents/new
   def new
-#          expire_action :action => : index
           @incident = current_user.incidents.build
           expires_in 1.year, :public => true
   end
 
   # GET /incidents/1/edit
   def edit
-#          expire_action :action => : index
+          expire_action :action =>  index
           expires_in 1.year, :public => true
   end
 
@@ -55,7 +54,7 @@ class IncidentsController < ApplicationController
   # PATCH/PUT /incidents/1
   # PATCH/PUT /incidents/1.json
   def update
- #   expire_action :action => : index
+    expire_action :action =>  index
     expire_action :action =>  index
     respond_to do |format|
       if @incident.update(incident_params)
@@ -76,6 +75,7 @@ class IncidentsController < ApplicationController
   end
 
   def update_close
+        expire_action :action =>  index
         @incident = Incident.find(params[:id])
     respond_to do |format|
       if @incident.update(incident_params)
