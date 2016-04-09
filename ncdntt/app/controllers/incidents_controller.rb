@@ -9,7 +9,7 @@ class IncidentsController < ApplicationController
   # GET /incidents
   # GET /incidents.json
   def index
-    @incidents = Incident.all_cached
+    @incidents = Incident.all
     @incident = Incident.new
     expires_in 1.year, :public => true
   end
