@@ -9,7 +9,7 @@ class IncidentsController < ApplicationController
   # GET /incidents
   # GET /incidents.json
   def index
-    @incidents = Incident.all
+    @incidents = Incident.all_cached
     @incident = Incident.new
     expires_in 1.year, :public => true
   end
@@ -22,21 +22,21 @@ class IncidentsController < ApplicationController
 
   # GET /incidents/new
   def new
-         expire_action :action =>  index
+         expire_action :action =>  :index
           @incident = current_user.incidents.build
           expires_in 1.year, :public => true
   end
 
   # GET /incidents/1/edit
   def edit
-         expire_action :action =>  index
+         expire_action :action =>  :index
          expires_in 1.year, :public => true
   end
 
   # POST /incidents
   # POST /incidents.json
   def create
-     expire_action :action =>  index
+     expire_action :action =>  :index
      # puts incident_params
      @incident = current_user.incidents.build(incident_params)
     respond_to do |format|
@@ -55,7 +55,7 @@ class IncidentsController < ApplicationController
   # PATCH/PUT /incidents/1
   # PATCH/PUT /incidents/1.json
   def update
-    expire_action :action =>  index
+    expire_action :action =>  :index
     respond_to do |format|
       if @incident.update(incident_params)
         format.html { redirect_to @incident, notice: 'Incident was successfully updated.' }
@@ -70,12 +70,12 @@ class IncidentsController < ApplicationController
 
 # GET /incidents/1/edit
   def close
-    expire_action :action =>  index
+    expire_action :action =>  :index
     @incident = Incident.find(params[:id])
   end
 
   def update_close
-    expire_action :action =>  index
+    expire_action :action =>  :index
     @incident = Incident.find(params[:id])
     respond_to do |format|
       if @incident.update(incident_params)
@@ -102,7 +102,7 @@ class IncidentsController < ApplicationController
   # DELETE /incidents/1
   # DELETE /incidents/1.json
   def destroy
-    expire_action :action =>  index
+    expire_action :action =>  :index
     @incident.destroy
     respond_to do |format|
       format.html { redirect_to incidents_url, notice: 'Incident was successfully destroyed.' }
