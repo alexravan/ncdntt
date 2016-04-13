@@ -66,6 +66,7 @@ class ApiController < ApplicationController
 # Requires all incident parameters apart from image and description
 # Returns created incident (JSON)
 	def createIncident
+		expire_action :action =>  :index
 		if ((params[:title].present?) && (params[:user_id].present?) && (params[:category_id].present?) && (params[:severity].present?) && (params[:location].present?) && (User.exists?(params[:user_id])))
 			@new_params = {
 				:title => params[:title].to_s,
@@ -100,6 +101,7 @@ class ApiController < ApplicationController
 # Requires incident ID, then any updated fields
 # Returns updated incident (JSON)
 	 def updateIncident
+		expire_action :action =>  :index
 	 	if (params[:id].present?) && (Incident.exists?(params[:id]))
 			id = params[:id].to_i
 			@inci = Incident.find(id)
@@ -148,6 +150,7 @@ class ApiController < ApplicationController
 # Returns closed incident (JSON)
 # will require authorization
 	def closeIncident
+		expire_action :action =>  :index
 		if (params[:id].present?) && (Incident.exists?(params[:id]))
 			id = params[:id].to_i
 			@inc = Incident.find(id)
