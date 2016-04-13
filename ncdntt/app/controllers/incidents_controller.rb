@@ -1,8 +1,7 @@
 class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
-  before_filter :authenticate_user!
-  # before_action :require_permission, only: :edit
+  before_action :require_permission, only: :edit
   caches_action :index
   caches_action :show, :layout => false
 

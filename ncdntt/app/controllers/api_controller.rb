@@ -1,7 +1,7 @@
 class ApiController < ApplicationController
 	protect_from_forgery with: :null_session
 	skip_before_filter  :verify_authenticity_token
-	before_filter :authenticate_user!
+	before_action :authenticate_user!, only: [:destroy]
   	caches_action :getIncidents
 	caches_action :getincident
   	caches_action :show, :layout => false
