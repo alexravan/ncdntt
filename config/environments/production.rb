@@ -79,10 +79,14 @@ config.static_cache_control = "public, max-age=31536000"
   config.active_record.dump_schema_after_migration = false
 
   # config/environments/production.rb
-    config.paperclip_defaults = {
-    :storage => :s3,
-    :bucket => 'ncdntt'
+config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['S3_BUCKET_NAME'],
+    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   }
+}
 config.cache_store = :dalli_store,
                     (ENV["MEMCACHIER_SERVERS"] || "").split(","),
                     {:username => ENV["MEMCACHIER_USERNAME"],
