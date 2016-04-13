@@ -1,0 +1,30 @@
+<%= form_for @incident, url: update_close_incident_path(@incident) do |f| %>
+
+  <% if @incident.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@incident.errors.count, "error") %> prohibited this incident from being saved:</h2>
+
+      <ul>
+      <% @incident.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+        <%= f.label :is_closed %><br>
+        <%= f.check_box :is_closed %>
+      </div>
+      <div class="field">
+        <%= f.label :date_closed %><br>
+        <%= f.datetime_select :date_closed %>
+      </div>
+      <div class="field">
+        <%= f.label :closing_comment %><br>
+        <%= f.text_field :closing_comment %>
+      </div>
+  <div class="actions">
+    <%= f.submit %> 
+  </div>
+<% end %>

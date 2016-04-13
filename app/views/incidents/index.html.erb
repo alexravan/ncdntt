@@ -1,0 +1,107 @@
+<% content_for :title, "Incident Dashboard" %>
+<div class="row" id="filter">
+  <!-- SEARCH FILTERS -->
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort By<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a id="sev">Severity</a></li>
+          <li><a id="date">Date</a></li>
+        </ul>
+      </div>
+</div>
+
+<div class='col-xs-12 col-sm-8 col-md-6 col-lg-4' id="incidents">
+    <!-- ACTUAL INCIDENTS -->
+</div>
+<br>
+<br>
+
+
+<% content_for :js do %>
+function load_incidents() {
+    <!-- console.log("rendering"); -->
+    var partial = localStorage.getItem("filter");
+    <!-- console.log(partial); -->
+    <!-- console.log(partial === "created_at"); -->
+    if (partial === "created_at") {
+      $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
+    }
+    else if (partial === "severity") {
+      $("#incidents").html('<%= escape_javascript(render ("severity")) %>');
+    }
+    // // defaults to created_at
+    else {
+      $("#incidents").html('<%= escape_javascript(render ("created_at")) %>');
+    }
+}
+
+  // Original JavaScript code by Chirp Internet: www.chirp.com.au
+  // Please acknowledge use of this code by including this header.
+  var inc_num;
+  function getCookie(name)
+  {
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
+  }
+  function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+  function initialize_incidents(){
+    inc_num = getCookie("num_incidents");
+    if (inc_num == null) {
+      inc_num = 0;
+    };
+    console.log("original: " + inc_num + "\n");
+  };
+  
+  $(initialize_incidents());
+
+  window.setInterval(function(){
+    console.log("checking for updates");
+    $.ajax({
+      dataType: "json",
+      url: "/api/numincidents",
+    }).done(function(data) {
+      new_num = jQuery.parseJSON(data);
+      console.log("new_num: " + new_num + "\n");
+      if (new_num != inc_num) {
+        inc_num = new_num;
+        
+        createCookie("num_incidents", inc_num, 100);
+        <!-- console.log("calling load incidents"); -->
+        window.location.reload();
+
+ 
+      }
+    });
+  }, 5000);
+  
+function one () {
+  $('.dropdown-menu').on('click', '#sev', function () {
+    localStorage.setItem('filter', 'severity');
+    load_incidents();
+    return false;
+  });
+  $('.dropdown-menu').on('click', '#date', function () {
+    localStorage.setItem('filter', 'created_at');
+    load_incidents();
+    return false;
+  });
+
+}
+
+
+
+  $(document).ready(load_incidents());
+  $(document).ready(one());
+
+<% end %>
+

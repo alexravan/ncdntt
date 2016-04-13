@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>ncdntt</title>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js" %>
+  <![endif]-->
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+  <div id='wrapper'>
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <!-- <div class='col-xs-12'>  -->
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="/">
+                    ncdntt
+                </a>
+            </li>
+            <li>
+                <!-- <a href="#"><span class="glyphicon glyphicon-bookmark"></span> Ticket Dashboard</a> -->
+                <%= link_to  incidents_path, {:class => 'navlinkto' }  do %>
+                  <span class="glyphicon glyphicon-bookmark"></span>
+                  Incident Dashboard
+              <% end %>
+            </li>
+            <li>
+                <!-- <a href="#"><span class="glyphicon glyphicon-pencil"></span>  New Ticket</a> -->
+                <%= link_to  new_incident_path, {:class => 'navlinkto' }  do %>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                  New Incident
+                <% end %>
+            </li>
+            <li>
+                <a href="/apidocs"><span class="glyphicon glyphicon-list-alt"></span>  API Documentation</a>
+            </li>
+             <% if user_signed_in? %>
+            <li>
+                <a href="/show_mine"><span class="glyphicon glyphicon-book"></span>  My Tickets</a>
+            </li>
+            <% end %>
+
+           <!--  <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li> -->
+        </ul>
+      <!-- </div> -->
+      <div id='user'>
+        <div id='userinfo' >
+         <% if user_signed_in? %>
+        <div class='round'>
+          <img src="https://pbs.twimg.com/profile_images/527918621230903296/WAB5n8l8_400x400.jpeg">
+        </div>
+                <!-- <li> -->
+                    <p><%= link_to current_user.first_name + " " + current_user.last_name , edit_user_registration_path %></p>
+                    <p><%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
+                <!-- </li> -->
+            <% else %>
+              <!-- <li> -->
+
+                  <p> <%= link_to "Sign Up", new_user_registration_path %> </p>
+              <!-- </li> -->
+              <!-- <li> -->
+                  <p><%= link_to "Login", new_user_session_path %></p>
+              <!-- </li> -->
+            <% end %>
+        </div>
+      </div>
+
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+
+
+    <!-- Page Content -->
+    <div class='row content'>
+
+      <div class='col-xs-3 sidebar-brand hidden-sm hidden-md hidden-lg hidden-xl' id='logosm'>ncdntt</div>
+      <div class='col-xs-7 col-sm-12 bg-bar'>
+        <h1> <%= content_for :title %> </h1>
+      </div>
+      <div class='hidden-sm hidden-md hidden-lg hidden-xl bg-bar col-xs-2' id='toggle'>
+        <button href='#menu-toggle' id="menu-toggle" class='btn navbar-toggle'>
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+  </div>
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <% if notice %>
+                <p id="notice"><%= notice %></p>
+            <% end %>
+
+            <% if alert %>
+                <p id="alert"><%= alert %></p>
+            <% end %>
+
+            <div class="row">
+                    <div class="container">
+                    <% flash.each do |name, msg| %>
+                    <!-- causes "Incident was successfully updated." etc. twice -->
+                      <!--<%= content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do %>
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <%= msg %>
+                      <% end %> -->
+                    <% end %>
+
+                    <%= yield %>
+                    <!-- <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
+                  </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+  </div>
+  <!-- wrapper -->
+
+</body>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        $("#logosm").toggle();
+        // $()
+    });
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        <% if content_for? :js %>
+            <%= yield :js %>
+          <% end %>
+          });
+    </script>
+
+
+</html>

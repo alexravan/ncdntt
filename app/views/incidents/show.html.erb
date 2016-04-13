@@ -1,0 +1,69 @@
+<% content_for :title, @incident.title %>
+
+<!-- <p id="notice"><%= notice %></p> -->
+
+<div class = 'col-xs-12 col-sm-10 col-md-6'>
+  <p>
+    <strong>submitted by id:</strong>
+    <%= @incident.user_id %>
+  </p>
+
+  <p>
+    <strong>submitted by email:</strong>
+    <%= @incident.user.email %>
+  </p>
+  <p>
+    <strong>Category:</strong>
+    <%= @incident.category.name%>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @incident.description %>
+  </p>
+
+  <p>
+    <strong>Severity:</strong>
+    <%= @incident.severity %>
+  </p>
+
+  <p>
+    <strong>Location:</strong>
+    <%= @incident.location %>
+  </p>
+
+  <p>
+    <strong>Time Reported:</strong>
+    <%= @incident.created_at %>
+  </p>
+
+  <% if @incident.media.url(:square) != '/media/square/missing.png' %>
+  <p>
+    <strong>Media:</strong>
+    <br/>
+   <img src=" <%= @incident.media.url(:square) %>">
+  </p>
+  <%end%>
+<!--   <p>
+    <strong>Is closed:</strong>
+    <%= @incident.is_closed %>
+  </p>
+ -->
+<!--   <p>
+    <strong>Date closed:</strong>
+    <%= @incident.date_closed %>
+  </p>
+ -->
+<!--   <p>
+    <strong>Closing comment:s</strong>
+    <%= @incident.closing_comment %>
+  </p>
+ -->
+ <div class='btn-group btn-group-sm'>
+  <div class="btn-group icons">
+    <%= link_to('Edit', edit_incident_path(@incident), :class => 'btn btn-default', :method => :get) %>
+    <%= link_to('Back', incidents_path, :class => 'btn btn-default') %>
+  </div>
+</div>
+
+</div>

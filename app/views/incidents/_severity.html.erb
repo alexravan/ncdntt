@@ -1,0 +1,36 @@
+  <div id="accordion" role="tablist" aria-multiselectable="true">
+      <% @incidents.active.order("severity").reverse.each do |incident|  %>
+      <% created =  '#' + 'collapse' + incident.id.to_s  %>
+      <% created1 = 'collapse' + incident.id.to_s  %>
+      <% heading = 'heading' + incident.id.to_s  %>
+      <% severityLevel = 'severityLevel' + incident.severity.to_s %>
+    	  <div class="panel panel-default individualIncident">
+        <a data-toggle="collapse" data-parent="#accordion" href=<%=created%> aria-expanded="true" aria-controls=<%=created1%>>
+
+          <div class= <%= severityLevel %>></div>
+            <div class="panel-heading" role="tab" id="headingOne">
+
+      	      <h4 class="panel-title">
+      	        	    <p><span class='bold'>Title: </span><%= incident.title.truncate(40) %> </p>
+      	      </h4>
+            </div>
+            </a>
+            
+          <div id=<%=created1%>  class="panel-collapse collapse" role="tabpanel" aria-labelledby=<%=heading%>>
+        	  <div class='well'>
+      		    <p><span class='bold'>Description: </span><%= incident.description %> </p>
+      		    <p><span class='bold'>Severity: </span><%= incident.severity %> </p>
+      		    <p><span class='bold'>Location: </span><%= incident.location %> </p>
+                    <p><span class='bold'>Reported at: </span><%= incident.created_at %> </p>
+      		    <div class='btn-group btn-group-sm'>
+      		      <div class="btn-group icons">
+      		        <%= link_to('Show', incident, :class => 'btn btn-default')%>
+      		        <%= link_to('Edit', edit_incident_path(incident), :class => 'btn btn-default', :method => :get) %>
+      		        <%= link_to('Mark Closed', close_incident_path(incident), :class => 'btn btn-default', :method => :get)  %>
+      		      </div>
+      		    </div>
+      		  </div>
+    	    </div>
+    	    </div>
+     	  <% end %>
+    </div>

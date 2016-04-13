@@ -1,0 +1,88 @@
+<!-- <div class='col-xs-12 title'> -->
+<!-- <h1>Listing Incidents</h1> -->
+<!-- </div> -->
+<!-- <table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>User</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Severity</th>
+      <th>Location</th>
+      <th>Is closed</th>
+      <th>Date closed</th>
+      <th>Closing comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @incidents.each do |incident| %>
+      <tr>
+        <td><%= incident.title %></td>
+        <td><%= incident.category %></td>
+        <td><%= incident.description %></td>
+        <td><%= incident.severity %></td>
+        <td><%= incident.location %></td>
+        <td><%= incident.is_closed %></td>
+        <td><%= incident.date_closed %></td>
+        <td><%= incident.closing_comment %></td>
+        <td><%= link_to 'Show', incident %></td>
+        <td><%= link_to 'Edit', edit_incident_path(incident) %></td>
+        <td><%= link_to 'Destroy', incident, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>  -->
+
+<% content_for :title, "Incident Dashboard" %>
+<div class='col-xs-12 col-sm-8 col-md-6 col-lg-4'>
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+      <% @incidents.active.order("severity").reverse.each do |incident|  %>
+      <% created =  '#' + 'collapse' + incident.id.to_s  %>
+      <% created1 = 'collapse' + incident.id.to_s  %>
+      <% heading = 'heading' + incident.id.to_s  %>
+      <% severityLevel = 'severityLevel' + incident.severity.to_s %>
+    	  <div class="panel panel-default individualIncident">
+        <a data-toggle="collapse" data-parent="#accordion" href=<%=created%> aria-expanded="true" aria-controls=<%=created1%>>
+
+          <div class= <%= severityLevel %>></div>
+            <div class="panel-heading" role="tab" id="headingOne">
+
+      	      <h4 class="panel-title">
+      	        	    <p><span class='bold'>Title: </span><%= incident.title.truncate(40) %> </p>
+      	      </h4>
+            </div>
+            </a>
+
+          <div id=<%=created1%>  class="panel-collapse collapse" role="tabpanel" aria-labelledby=<%=heading%>>
+        	  <div class='well'>
+      		    <p><span class='bold'>Description: </span><%= incident.description %> </p>
+      		    <p><span class='bold'>Severity: </span><%= incident.severity %> </p>
+      		    <p><span class='bold'>Location: </span><%= incident.location %> </p>
+                    <p><span class='bold'>Reported at: </span><%= incident.created_at %> </p>
+      		    <div class='btn-group btn-group-sm'>
+      		      <div class="btn-group icons">
+      		        <%= link_to('Show', incident, :class => 'btn btn-default')%>
+      		        <%= link_to('Edit', edit_incident_path(incident), :class => 'btn btn-default', :method => :get) %>
+      		        <%= link_to('Mark Closed', incident, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default') %>
+      		      </div>
+      		    </div>
+      		  </div>
+    	    </div>
+    	    </div>
+
+     	  <% end %>
+    </div>
+</div>
+<br>
+<br>
+
+<!--
+
+
+
+
+<%= link_to 'New Incident', new_incident_path %>
+ -->

@@ -1,0 +1,461 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+html, body {
+    overflow-x: hidden;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.incident {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+.individualIncident:hover{
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+
+.buttons-outer {
+    float:left;
+    display: inline;
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    background: rgb(52, 55, 68);
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: rgb(52, 55, 68);
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: rgb(153, 154, 158);
+
+}
+
+
+        .navlinkto li {
+            display: block;
+            text-decoration: none;
+            color: rgb(153, 154, 158);
+        }
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+    background: rgb(30, 33, 42);
+}
+
+            .navlinkto li :hover {
+            text-decoration: none;
+            color: #000;
+            background: rgba(255,255,255,0.2);
+            background: red;
+        }
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    font-family: 'Varela', sans-serif;
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+    background: rgb(160, 137, 208);
+    height: 90px;
+
+
+}
+
+.content > .sidebar-brand {
+    font-family: 'Varela', sans-serif;
+    height: 65px;
+    font-size: 30px;
+    line-height: 60px;
+    background: rgb(160, 137, 208);
+    height: 90px;
+    color: white;
+    padding-left: 30px;
+    padding-top: 14px;
+    text-align: center;
+
+}
+
+.sidebar-nav > .sidebar-brand a {
+    text-align: center;
+    font-size: 2em;
+    color:rgb(254, 254, 250);
+    padding-right: 30px;
+    padding-top: 15px;
+
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #eee;
+    background: none;
+
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+body {
+    padding-top: 0px;
+    background-color: rgb(246, 246, 246);
+}
+
+.profile {
+    display: inline-block;
+    max-width: 100%;
+
+}
+
+div.img-circ{
+    height:200px;
+    width:200px;
+    overflow:hidden;
+    border-radius:50%;
+}
+
+.content {
+    background-color: rgb(254, 254, 250);
+    
+}
+
+.bg-bar {
+    font-family: 'Varela', sans-serif;
+    height: 90px;
+    background: rgb(254, 254, 250);
+    /*display: block;*/
+    z-index: 5;
+    /*padding: 0px;*/
+    /*vertical-align: center;*/
+    padding-top: 6px;
+    padding-left: 50px; 
+    /*position: fixed;*/
+}
+
+.brand {
+    font-family: 'Varela', sans-serif;
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+    background: rgb(160, 137, 208);
+    height: 90px;
+    color: white;
+}
+
+
+.navbar-toggle .icon-bar {
+    background-color: black;
+}
+
+.navbar-toggle {
+    padding-top: 24px;
+}
+
+
+#page-content-wrapper {
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-top: 0px;
+    }
+
+    .bg-bar h1 {
+        font-size: 2em;
+        position:relative;
+    }
+    .bg-bar {
+        padding-top: 10px;
+    }
+
+}
+
+@media (max-width: 630px) {
+
+    .bg-bar h1 {
+        font-size: 1.5em;
+        padding-top: 5px;
+        /*padding-left: -5px;*/
+    }
+    
+
+    .bg-bar.brand {
+        /*min-width: 130px;*/
+    }
+    .bg-bar.brand h1 {
+        padding-right:20px;
+        padding-top: 5px ; 
+
+        text-align: center;
+        /*color:black;*/
+    }
+
+
+}
+
+@media (max-width: 530px) {
+    .content > .sidebar-brand {
+        font-size: 17px;
+    }
+
+    .bg-bar {
+        padding-left:25px;
+    }
+
+    #toggle {
+        margin-right: -14px;
+    }
+}
+
+#user {
+    /*vertical-align: bottom;*/
+    position: fixed;
+    bottom: 0px;
+    background: rgb(30, 33, 42);
+    height: 200px;
+    z-index: -1;
+    width: auto;
+    width: 250px;
+
+}
+
+#userinfo {
+    font-family: 'Varela', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+    position: fixed;
+    bottom: 10px;
+    left: 0px;
+    width: 250px;
+    text-align: center;
+    padding-top: 30px;
+    /*background: red;*/
+    /*line-height: 30px;*/
+
+}
+        
+#userinfo > p, #userinfo > h6  {
+font-family: 'Varela', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+    
+}
+.round {
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 10%;
+    max-width: 100px;
+    max-height: 100px;
+    margin-left: 55px;
+    margin-top: 18px;
+}
+
+.round:hover {
+    opacity: .8;
+    background: #eee;
+    width: 100%;
+    height: 100%;
+    transition:opacity .2s ease-out, background .2s ease-in;
+}
+
+
+.round img {
+    display: block;
+    width: 100%;
+    min-width: 30px;
+    min-height: 30px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.home {
+    min-width: 20%;
+    min-height: 20%;
+    max-height: 40%;
+    max-width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img.circle {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+}
+.severityLevel10 {
+    background-color: #D91E18;
+    /*width: 15px;*/
+    height: 10px;
+}
+.severityLevel9 {
+    background-color: #D91E18;
+    /*width: 15px;*/
+    height:10px;
+}
+.severityLevel8 {
+    background-color: #F2784B;
+    /*width: 15px;*/
+    height: 10px;
+}
+.severityLevel7 {
+    background-color: #F2784B;
+    /*width: 15px;*/
+    height: 10px;
+}
+.severityLevel6 {
+    background-color: #F9BF3B;
+    /*width: 15px;*/
+    height: 10px;
+}
+.severityLevel5 {
+    background-color: #F9BF3B;
+    /*width: 15px;*/
+    height: 10px;
+}
+
+.severityLevel4 {
+    background-color: #87D37C;
+    /*width: 15px;*/
+    height: 10px;
+}
+.severityLevel3 {
+    background-color: #87D37C;
+    /*width: 15px;*/
+    height: 10px;
+}
+
+.severityLevel2 {
+    background-color: #26A65B;
+    /*width: 15px;*/
+    height: 10px;
+}
+
+.severityLevel1 {
+    background-color: #26A65B;
+    /*width: 15px;*/
+    height: 10px;
+}
+
+.extra-padding {
+    padding-top: 40px;
+}
+
+#toggle {
+    float: right;
+    position: absolute;
+    right: 0;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.filter > ul {
+    height: 20%;
+}

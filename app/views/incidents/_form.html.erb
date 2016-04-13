@@ -1,0 +1,57 @@
+<%= form_for(@incident, multipart:true) do |f| %>
+  <% if @incident.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@incident.errors.count, "error") %> prohibited this incident from being saved:</h2>
+
+      <ul>
+      <% @incident.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.select(:category_id, options_from_collection_for_select(Category.all, 'id', 'name'))%>
+  </div>
+ <!--  -->
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :severity %><br>
+    <%= f.number_field :severity, min: 1, max: 10 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :media %>
+    <%= f.file_field :media %>
+  </div>
+    <!--   <div class="field">
+        <%= f.label :is_closed %><br>
+        <%= f.check_box :is_closed %>
+      </div>
+      <div class="field">
+        <%= f.label :date_closed %><br>
+        <%= f.datetime_select :date_closed %>
+      </div>
+      <div class="field">
+        <%= f.label :closing_comment %><br>
+        <%= f.text_field :closing_comment %>
+      </div>
+ -->  <div class="actions">
+    <%= f.submit %> 
+  </div>
+<% end %>

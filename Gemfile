@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
+<<<<<<< HEAD
 
+=======
+ruby "2.3.0"
+>>>>>>> 3fa785f217a233373e08955726a41ecfe416c11a
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
@@ -23,6 +27,13 @@ gem 'paperclip'
 
 gem 'aws-sdk', '~>1.x'
 
+<<<<<<< HEAD
+=======
+gem 'devise'
+
+gem 'rails_12factor', group: :production
+
+>>>>>>> 3fa785f217a233373e08955726a41ecfe416c11a
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -43,6 +54,15 @@ gem 'bootstrap-generators', '~> 3.3.4'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+<<<<<<< HEAD
+=======
+# memory caching
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
+gem 'dalli'
+gem 'memcachier'
+
+>>>>>>> 3fa785f217a233373e08955726a41ecfe416c11a
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -55,4 +75,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3fa785f217a233373e08955726a41ecfe416c11a
