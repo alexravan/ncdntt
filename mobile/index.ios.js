@@ -12,9 +12,6 @@ import React, {
 } from 'react-native';
 
 class mobile extends Component {
-  componentDidMount() {
-    this.apicall();
-  }
   render() {
     return (
       <View style={styles.container}>
@@ -31,37 +28,8 @@ class mobile extends Component {
       </View>
     );
   }
-
-  apicall() {
-    var params={
-        title: 'Im stuck in a phone!!!',
-        user_id: 1,
-        category_id: 1,
-        severity: 7,
-        location: 'Carm common room',
-        description: 'test',
-    }
-    var formData = new FormData();
-    for (var k in params) {
-      formData.append(k, params[k]);
-    }
-    var request={
-      method: 'POST',
-      headers: {},
-      body: formData
-    }
-    fetch('https://ncdntt.herokuapp.com/api/createincident', request)
-    .then((response) => response.text())
-    .then((responseText) => {
-      console.log(responseText);
-    })
-    .catch((error) => {
-      console.warn(error);
-    });
-  }
-
-
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
