@@ -1,7 +1,7 @@
 class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
-  before_action :require_permission, only: :edit
+  # before_action :require_permission, only: :edit
   caches_action :index
   caches_action :show, :layout => false
 
@@ -22,8 +22,8 @@ class IncidentsController < ApplicationController
   # GET /incidents/new
   def new
          expire_action :action =>  :index
-          @incident = current_user.incidents.build
-          expires_in 1.year, :public => true
+         @incident = current_user.incidents.build
+         expires_in 1.year, :public => true
   end
 
   # GET /incidents/1/edit
